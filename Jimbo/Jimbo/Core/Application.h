@@ -31,10 +31,10 @@ namespace Jimbo
 		void run();
 
 		// Window modes
-		void setWindowName(std::string name)	{ this->windowName = name; };
-		void setFullScreen(bool isFullScreen)	{ this->fullScreen = isFullScreen; };
-		void setWindowSize(int x, int y)		{ windowSizeX = x; windowSizeY = y; }
-		void capFrameRate(int fps)				{ this->fps = fps; }
+		void setWindowName(const std::string& name)	{ this->windowName = name; };
+		void setFullScreen(bool isFullScreen)		{ this->fullScreen = isFullScreen; };
+		void setWindowSize(int x, int y)			{ windowSizeX = x; windowSizeY = y; }
+		void capFrameRate (int fps)					{ this->fps = fps; }
 
 		//Surface* GetScreen();
 		//SceneManagerPtr GetSceneManager();

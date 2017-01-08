@@ -120,6 +120,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
+    <ClInclude Include="Core\Logging.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Jimbo.h" />
   </ItemGroup>
