@@ -75,15 +75,21 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Glad\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Glad\include;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Glad.lib;glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Glad.lib;glfw3.lib;OpenAL32.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>xcopy /d /y "$(SolutionDir)dlls\*.*" "$(OutDir)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Make sure dll files are available</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -119,12 +125,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Audio\Manager\DebugSoundManager.h" />
+    <ClInclude Include="Audio\Loader\AudioLoader.h" />
+    <ClInclude Include="Audio\Music.h" />
+    <ClInclude Include="Audio\Loader\OGGLoader.h" />
+    <ClInclude Include="Audio\Manager\OpenALSoundManager.h" />
+    <ClInclude Include="Audio\Sound.h" />
+    <ClInclude Include="Audio\Manager\SoundManager.h" />
+    <ClInclude Include="Audio\Loader\WAVLoader.h" />
     <ClInclude Include="Core\Application.h" />
+    <ClInclude Include="Core\Exception.h" />
     <ClInclude Include="Core\Logging.h" />
     <ClInclude Include="Core\Types.h" />
+    <ClInclude Include="Event\Event.h" />
+    <ClInclude Include="Event\EventHandler.h" />
+    <ClInclude Include="Event\EventManager.h" />
+    <ClInclude Include="Test\TestEvents.h" />
     <ClInclude Include="Jimbo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Audio\Music.cpp" />
+    <ClCompile Include="Audio\Loader\OGGLoader.cpp" />
+    <ClCompile Include="Audio\Sound.cpp" />
+    <ClCompile Include="Audio\Manager\OpenALSoundManager.cpp" />
+    <ClCompile Include="Audio\Loader\WAVLoader.cpp" />
     <ClCompile Include="Core\Application.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

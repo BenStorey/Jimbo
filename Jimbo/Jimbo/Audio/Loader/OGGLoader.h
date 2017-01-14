@@ -1,0 +1,20 @@
+#pragma once
+
+/////////////////////////////////////////////////////////
+// OGGLoader.h
+//
+// Ben Storey
+//
+// Class for loading OGG files into a buffer
+//
+/////////////////////////////////////////////////////////
+
+#include "AudioLoader.h"
+
+namespace Jimbo
+{
+	class OGGLoader : public AudioLoader
+	{
+
+	};
+}

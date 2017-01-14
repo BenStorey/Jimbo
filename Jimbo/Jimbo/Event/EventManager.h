@@ -1,0 +1,81 @@
+#pragma once
+
+///////////////////////////////////////////////////////////////////////////////////////
+// EventManager.h
+//
+// Ben Storey
+//
+// An Event Manager stores all pending events and dispatches them. Normally this would run
+// after each frame so that the world can update based on them
+//
+///////////////////////////////////////////////////////////////////////////////////////
+
+#include <list>
+#include <functional>
+#include <algorithm>
+#include <memory>
+
+#include "Event.h"
+
+
+namespace Jimbo
+{
+
+	class EventManager
+	{
+		// For now the EventManager keeps full ownership by using std::unique_ptr. It could also be very reasonable here
+		// to use shared pointers, so that the client can maintain their own reference to fired events if they choose to, without
+		// them getting deleted from under them. 
+		typedef std::unique_ptr<EventBase> EventPtr;
+
+		// For now we're using a simple list for our list of pending events. 
+		typedef std::list<EventPtr> EventQueue;
+
+	private:
+		// Events can trigger other events, which could be bad if we are busy dispatching one of them
+		// Therefor we use two queues, and when we are processing one we use the other
+		EventQueue firstQueue_;
+		EventQueue secondQueue_;
+		EventQueue* queueInUse_;
+		EventQueue* queueNotInUse_;
+
+	public:
+
+		EventManager() : firstQueue_(), secondQueue_() { queueInUse_ = &firstQueue_; queueNotInUse_ = &secondQueue_; }
+		~EventManager() {}
+
+		int numberEventsInQueue() { return queueInUse_->size(); }
+
+		// Capture into smart pointer and move into the queue so we also transfer ownership. 
+		void raiseEvent(EventBase* ev)
+		{
+			EventPtr p(ev);
+			queueInUse_->push_back(std::move(p));
+		}
+
+		// These events fire immediately without getting queued, which can be useful in some circumstances. 
+		// Since the EventManager always maintains ownership of these, we need to delete them after they've been fired
+		void immediateDispatch(EventBase* ev)
+		{
+			ev->dispatchEvent();
+			delete ev;
+		}
+
+		// Not only dispatch, also delete the pointer afterwards!
+		void dispatchEvents()
+		{
+			// We need to switch the pointers now so that we call dispatch event on the queue not in use!
+			std::swap(queueInUse_, queueNotInUse_);
+
+			// Call dispatch on everything that is queued up
+			for (const auto& it : *queueNotInUse_)
+			{
+				it->dispatchEvent();
+			}
+
+			// Clearing the list should also call the smart pointers to clear up after themselves. No deletions necessary. 
+			queueNotInUse_->clear();
+		}
+	};
+
+}

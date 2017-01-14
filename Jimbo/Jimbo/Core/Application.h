@@ -12,7 +12,10 @@
 
 #include <string>
 #include <iostream>
-#include "Types.h"
+#include <memory>
+#include <boost/optional/optional.hpp>
+
+#include "../Audio/Manager/SoundManager.h"
 
 // We rely on GLFX and Glad for our application
 
@@ -31,10 +34,14 @@ namespace Jimbo
 		void run();
 
 		// Window modes
-		void setWindowName(const std::string& name)	{ this->windowName = name; };
-		void setFullScreen(bool isFullScreen)		{ this->fullScreen = isFullScreen; };
-		void setWindowSize(int x, int y)			{ windowSizeX = x; windowSizeY = y; }
-		void capFrameRate (int fps)					{ this->fps = fps; }
+		void setWindowName(const std::string& name)	{ this->windowName_ = name; };
+		void setFullScreen(bool isFullScreen)		{ this->fullScreen_ = isFullScreen; };
+		void setWindowSize(int x, int y)			{ windowSizeX_ = x; windowSizeY_ = y; }
+		
+		// Use optional for framerates, as you can pass an empty to turn it off
+		void capFrameRate(boost::optional<int> fps)	{ this->fps_ = fps; }
+		void capFrameRate(int fps)					{ this->fps_ = boost::make_optional(fps); }
+		boost::optional<int> getFrameRate()			{ return fps_; }
 
 		//Surface* GetScreen();
 		//SceneManagerPtr GetSceneManager();
@@ -51,18 +58,23 @@ namespace Jimbo
 		Application& operator=(Application const&) = delete;  // Copy assign
 		Application& operator=(Application &&) = delete;      // Move assign
 
+		void initialise();
+
 		//SceneManagerPtr sceneManager;
 		//EventManagerPtr eventManager;
 		//SoundManagerPtr soundManager;
 		//Surface* screen;
 
-		bool initialized;
-		bool fullScreen;
-		std::string windowName;
-		int fps;
+		// Use unique pointer because we want ownership of it. 
+		std::unique_ptr<SoundManager> soundManager_;
 
-		int windowSizeX;
-		int windowSizeY;
+		bool initialised_;
+		bool fullScreen_;
+		std::string windowName_;
+		boost::optional<int> fps_;
+
+		int windowSizeX_;
+		int windowSizeY_;
 	};
 
 	//inline Surface*		   Application::GetScreen(void) { return screen; }

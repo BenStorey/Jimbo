@@ -1,0 +1,16 @@
+/////////////////////////////////////////////////////////
+// WAVLoader.cpp
+//
+// Ben Storey
+//
+// Class for loading WAV files into a buffer
+//
+/////////////////////////////////////////////////////////
+
+#include "WAVLoader.h"
+
+
+void Jimbo::WAVLoader::loadFromFile(const std::string & file)
+{
+	
+}

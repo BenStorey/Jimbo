@@ -6,17 +6,27 @@
 // Ben Storey
 //
 // This include file includes everything else in the Jimbo library, so a client project
-// needs to include this file (and the compiled library) only
+// needs to include this file (and the compiled library) only.
+// There should be no includes specific to an API implementation or external library, else I won't be able to swap them out later
 //
 /////////////////////////////////////////////////////////
 
 
-// Handy define to make logging easier, is compiled away in release
-//#define LOG(x) Application::Instance()::Log(x, __FILE__, __LINE__ );
-
 // Necessary libraries for clients to link against
 #pragma comment(lib, "Glad.lib")
 #pragma comment(lib, "glfw3.lib")
+#pragma comment(lib, "OpenAL32.lib")
 
-#include "Core\Types.h"
-#include "Core\Application.h"
+// Include the rest of our engine so client doesn't have to
+#include "Core/Types.h"
+#include "Core/Application.h"
+
+// Audio
+#include "Audio/Music.h"
+#include "Audio/Sound.h"
+#include "Audio/Manager/SoundManager.h"
+
+// Events
+#include "Event/Event.h"
+#include "Event/EventHandler.h"
+#include "Event/EventManager.h"
