@@ -29,7 +29,7 @@ int main()
 	TestEvents te;
 	te.doTest();
 
-	std::unique_ptr<Application> app(new Application);
+	auto app = std::make_unique<Application>();
 	app->setFullScreen(false);
 	app->setWindowSize(800, 600);
 	app->setWindowName("Testing Engine");

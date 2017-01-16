@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Jimbo/Libraries/boost_1_63_0/boost

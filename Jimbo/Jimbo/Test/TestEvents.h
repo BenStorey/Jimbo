@@ -22,7 +22,7 @@ namespace Jimbo
 		{
 		public:
 			TestEvent(std::string m, int num) : m_(m), n_(num) { LOG("TestEvent created with " + m); }
-			virtual ~TestEvent() { LOG("~TestEvent destructor with message " + m_); }
+			virtual ~TestEvent()							   { LOG("~TestEvent destructor with message " + m_); }
 
 			const std::string& getMessage() const { return m_; }
 			int getNumber() const { return n_; }

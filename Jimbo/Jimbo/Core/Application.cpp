@@ -17,16 +17,13 @@
 #include <glad/glad.h>
 #include <glfw3.h>
 
-// AL implementation for Audio for now
-#include "../Audio/Manager/OpenALSoundManager.h"
-#include "../Audio/Manager/DebugSoundManager.h"
 
 Jimbo::Application::Application()
 {
 	this->windowName_ = "Jimbo Project";
 	this->fps_ = 0;
 
-	soundManager_ = nullptr;
+	//soundManager_ = nullptr;
 }
 
 Jimbo::Application::~Application()
@@ -35,14 +32,14 @@ Jimbo::Application::~Application()
 
 void Jimbo::Application::initialise()
 {
-	soundManager_.reset(new OpenALSoundManager);
+	/*soundManager_.reset(new OpenALSoundManager);
 	
 	LOG("Initialising OpenAL Sound Manager");
 	if (!soundManager_->initialise())
 	{
 		// We couldn't initialise the OpenALSoundManager. Therefore, use the debug one (that plays no sound)
 		soundManager_.reset(new DebugSoundManager);
-	}
+	}*/
 
 	initialised_ = true;
 }

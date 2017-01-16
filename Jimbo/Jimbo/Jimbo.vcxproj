@@ -125,14 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Audio\Manager\DebugSoundManager.h" />
-    <ClInclude Include="Audio\Loader\AudioLoader.h" />
-    <ClInclude Include="Audio\Music.h" />
-    <ClInclude Include="Audio\Loader\OGGLoader.h" />
-    <ClInclude Include="Audio\Manager\OpenALSoundManager.h" />
-    <ClInclude Include="Audio\Sound.h" />
-    <ClInclude Include="Audio\Manager\SoundManager.h" />
-    <ClInclude Include="Audio\Loader\WAVLoader.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Exception.h" />
     <ClInclude Include="Core\Logging.h" />
@@ -144,11 +136,6 @@
     <ClInclude Include="Jimbo.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Audio\Music.cpp" />
-    <ClCompile Include="Audio\Loader\OGGLoader.cpp" />
-    <ClCompile Include="Audio\Sound.cpp" />
-    <ClCompile Include="Audio\Manager\OpenALSoundManager.cpp" />
-    <ClCompile Include="Audio\Loader\WAVLoader.cpp" />
     <ClCompile Include="Core\Application.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

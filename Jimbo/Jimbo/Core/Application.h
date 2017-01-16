@@ -15,8 +15,6 @@
 #include <memory>
 #include <boost/optional/optional.hpp>
 
-#include "../Audio/Manager/SoundManager.h"
-
 // We rely on GLFX and Glad for our application
 
 namespace Jimbo
@@ -50,13 +48,14 @@ namespace Jimbo
 
 		//std::string GetAppExePath();
 
-	private:
-
-		// Can't copy our Application around
+		// Can't copy our Application around. Notice that these are defined in public and not private,
+		// since that will lead to better error messages if anyone tries to use them!
 		Application(Application const&) = delete;             // Copy construct
 		Application(Application&&) = delete;                  // Move construct
 		Application& operator=(Application const&) = delete;  // Copy assign
 		Application& operator=(Application &&) = delete;      // Move assign
+
+	private:
 
 		void initialise();
 
@@ -66,7 +65,7 @@ namespace Jimbo
 		//Surface* screen;
 
 		// Use unique pointer because we want ownership of it. 
-		std::unique_ptr<SoundManager> soundManager_;
+		//std::unique_ptr<SoundManager> soundManager_;
 
 		bool initialised_;
 		bool fullScreen_;

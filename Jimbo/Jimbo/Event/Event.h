@@ -26,7 +26,7 @@ namespace Jimbo
 		virtual ~EventBase() { }
 	};
 
-	typedef EventHandlerBase* EventHandlerBasePtr;
+	using EventHandlerBasePtr = EventHandlerBase*;
 
 	template <class T>
 	class Event : public EventBase
@@ -40,7 +40,7 @@ namespace Jimbo
 
 		static void AddHandler(EventHandlerBasePtr handler, CallbackFn fn)
 		{
-			handlers.push_back(std::make_pair(handler, fn));
+			handlers.emplace_back(std::make_pair(handler, fn));
 		}
 
 		static void RemoveHandler(EventHandlerBasePtr handler)

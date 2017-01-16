@@ -26,10 +26,10 @@ namespace Jimbo
 		// For now the EventManager keeps full ownership by using std::unique_ptr. It could also be very reasonable here
 		// to use shared pointers, so that the client can maintain their own reference to fired events if they choose to, without
 		// them getting deleted from under them. 
-		typedef std::unique_ptr<EventBase> EventPtr;
+		using EventPtr = std::unique_ptr<EventBase>;
 
 		// For now we're using a simple list for our list of pending events. 
-		typedef std::list<EventPtr> EventQueue;
+		using EventQueue = std::list<EventPtr>;
 
 	private:
 		// Events can trigger other events, which could be bad if we are busy dispatching one of them

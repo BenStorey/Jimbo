@@ -18,9 +18,9 @@ namespace Jimbo
 	{
 	public:
 		JimboException(const std::string& message) : message_(message) {}
-		const std::string& getMessage() { return message_; }
+		const std::string& getMessage() const { return message_; }
 
 	private:
-		const std::string& message_;
+		std::string message_;
 	};
 }
