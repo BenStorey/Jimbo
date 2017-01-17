@@ -49,8 +49,7 @@ namespace Jimbo
 		// Capture into smart pointer and move into the queue so we also transfer ownership. 
 		void raiseEvent(EventBase* ev)
 		{
-			EventPtr p(ev);
-			queueInUse_->push_back(std::move(p));
+			queueInUse_->emplace_back(EventPtr(ev));
 		}
 
 		// These events fire immediately without getting queued, which can be useful in some circumstances. 
@@ -67,11 +66,7 @@ namespace Jimbo
 			// We need to switch the pointers now so that we call dispatch event on the queue not in use!
 			std::swap(queueInUse_, queueNotInUse_);
 
-			// Call dispatch on everything that is queued up
-			for (const auto& it : *queueNotInUse_)
-			{
-				it->dispatchEvent();
-			}
+			std::for_each(queueNotInUse_->cbegin(), queueNotInUse_->cend(), [](const auto& it) { it->dispatchEvent(); });
 
 			// Clearing the list should also call the smart pointers to clear up after themselves. No deletions necessary. 
 			queueNotInUse_->clear();
