@@ -15,16 +15,16 @@
 
 namespace Jimbo
 {
-	class irrKlangSoundManager : public SoundManager
-	{
-	public:
-		bool initialise() override;
-		void shutdown() override;
-		void stopAllSounds() override;
+    class irrKlangSoundManager : public SoundManager
+    {
+    public:
+        bool initialise() override;
+        void shutdown() override;
+        void stopAllSounds() override;
 
-		std::unique_ptr<Sound> createSound() override;
+        std::unique_ptr<Sound> createSound() override;
 
-	private:
-		irrklang::ISoundEngine* engine_;
-	};
+    private:
+        irrklang::ISoundEngine* engine_;
+    };
 }

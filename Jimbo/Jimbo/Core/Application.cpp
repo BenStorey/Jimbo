@@ -24,107 +24,107 @@
 
 Jimbo::Application::Application() noexcept
 {
-	// Defaults
-	windowName_ = "Jimbo Project";
-	audioEngine_ = AudioEngine::IRRKLANG;
+    // Defaults
+    windowName_ = "Jimbo Project";
+    audioEngine_ = AudioEngine::IRRKLANG;
 
-	soundManager_ = nullptr;
-	eventManager_ = nullptr;
-	sceneManager_ = nullptr;
-	inputManager_ = nullptr;
-	renderer_	  = nullptr;
+    soundManager_ = nullptr;
+    eventManager_ = nullptr;
+    sceneManager_ = nullptr;
+    inputManager_ = nullptr;
+    renderer_      = nullptr;
 }
 
-Jimbo::Application::~Application()
+Jimbo::Application::~Application() noexcept
 {
 
 }
 
 void Jimbo::Application::initialise()
 {
-	// Switch depending on the choice
-	switch (audioEngine_)
-	{
-	case AudioEngine::IRRKLANG:
-		soundManager_.reset(new irrKlangSoundManager); break;
-	case AudioEngine::SILENT:
-		soundManager_.reset(new SilentSoundManager); break;
-	}
+    // Switch depending on the choice
+    switch (audioEngine_)
+    {
+    case AudioEngine::IRRKLANG:
+        soundManager_.reset(new irrKlangSoundManager); break;
+    case AudioEngine::SILENT:
+        soundManager_.reset(new SilentSoundManager); break;
+    }
 
-	LOG("Initialising Sound Manager");
-	if (!soundManager_->initialise())
-	{
-		// We couldn't initialise the given one. Therefore, use the debug one (that plays no sound)
-		soundManager_.reset(new SilentSoundManager);
-	}
+    LOG("Initialising Sound Manager");
+    if (!soundManager_->initialise())
+    {
+        // We couldn't initialise the given one. Therefore, use the debug one (that plays no sound)
+        soundManager_.reset(new SilentSoundManager);
+    }
 
-	eventManager_.reset(new EventManager);
+    eventManager_.reset(new EventManager);
 
-	if (!glfwInit())
-	{
-		LOG("Failed to initialize GLFW\n");
-		throw new JimboException("Failed to initialise GLFW");
-	}
+    if (!glfwInit())
+    {
+        LOG("Failed to initialize GLFW\n");
+        throw new JimboException("Failed to initialise GLFW");
+    }
 
-	initialised_ = true;
+    initialised_ = true;
 }
 
 void Jimbo::Application::setupWindow()
 {
-	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL 
+    glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL 
 
-	// Open a window and create its OpenGL context
-	auto window = glfwCreateWindow(windowSizeX_, windowSizeY_, windowName_.c_str(), nullptr, nullptr);
+    // Open a window and create its OpenGL context
+    auto window = glfwCreateWindow(windowSizeX_, windowSizeY_, windowName_.c_str(), nullptr, nullptr);
 
-	if (window == nullptr)
-	{
-		glfwTerminate();
-		throw new JimboException("Unable to create application window");
-	}
+    if (window == nullptr)
+    {
+        glfwTerminate();
+        throw new JimboException("Unable to create application window");
+    }
 
-	glfwMakeContextCurrent(window);
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    glfwMakeContextCurrent(window);
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	// Initialise Glad
-	if (!gladLoadGL())
-	{
-		LOG("Failed to initialize Glad\n");
-		throw new JimboException("Failed to initialise OpenGL");
-	}
+    // Initialise Glad
+    if (!gladLoadGL())
+    {
+        LOG("Failed to initialize Glad\n");
+        throw new JimboException("Failed to initialise OpenGL");
+    }
 
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-	glViewport(0, 0, width, height);
+    int width, height;
+    glfwGetFramebufferSize(window, &width, &height);
+    glViewport(0, 0, width, height);
 
-	// Can now create our other input/scene managers that the window is available
+    // Can now create our other input/scene managers that the window is available
     renderer_.reset(new Renderer(window));
-	inputManager_.reset(new glfwInputManager(window));
-	sceneManager_.reset(new SceneManager(renderer_.get(), inputManager_.get(), eventManager_.get(), soundManager_.get()));
+    inputManager_.reset(new glfwInputManager(window));
+    sceneManager_.reset(new SceneManager(renderer_.get(), inputManager_.get(), eventManager_.get(), soundManager_.get()));
 }
 
 void Jimbo::Application::run()
 {
-	LOG("Initialising Application");
-	
-	initialise();
-	setupWindow();
+    LOG("Initialising Application");
+    
+    initialise();
+    setupWindow();
 
-	// Ensure everything is initialised before running
-	inputManager_->initialise();
+    // Ensure everything is initialised before running
+    inputManager_->initialise();
 
-	// Push the first scene of the world. Scene manager will take ownership of the pointer from here
-	sceneManager_->pushScene(startupScene_);
+    // Push the first scene of the world. Scene manager will take ownership of the pointer from here
+    sceneManager_->pushScene(startupScene_);
 
-	// Main game loop
-	sceneManager_->runGameLoop();
+    // Main game loop
+    sceneManager_->runGameLoop();
 
-	LOG("Shutting down Application");
-	soundManager_->shutdown();
-	inputManager_->shutdown();
+    LOG("Shutting down Application");
+    soundManager_->shutdown();
+    inputManager_->shutdown();
 
-	glfwTerminate();
+    glfwTerminate();
 }

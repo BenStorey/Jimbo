@@ -22,46 +22,46 @@
 
 namespace Jimbo
 {
-	class InputManager : boost::noncopyable
-	{
-	public:
-		
-		virtual ~InputManager() {}
+    class InputManager : boost::noncopyable
+    {
+    public:
+        
+        virtual ~InputManager() {}
 
-		virtual void initialise()   = 0;
-		virtual void shutdown()     = 0;
-		virtual void update()       = 0;
+        virtual void initialise()   = 0;
+        virtual void shutdown()     = 0;
+        virtual void update()       = 0;
 
-		// Manage our listeners
-		void addListener(InputListener* listener)       { listeners_.push_back(listener); }
-		void removeListener(InputListener* listener)    { boost::remove_erase(listeners_, listener); }
-		void removeAllListeners()                       { listeners_.clear(); }
+        // Manage our listeners
+        void addListener(InputListener* listener)       { listeners_.push_back(listener); }
+        void removeListener(InputListener* listener)    { boost::remove_erase(listeners_, listener); }
+        void removeAllListeners()                       { listeners_.clear(); }
 
-		// Set the action settings
-		void resetInputSettings()               { settings_.reset(); }
-		InputSettings& getInputSettingsToEdit() { return settings_; }
+        // Set the action settings
+        void resetInputSettings()               { settings_.reset(); }
+        InputSettings& getInputSettingsToEdit() { return settings_; }
 
-	protected:
+    protected:
 
-		// InputManager Implementations can call these functions as appropriate, and the logic here will manage the appropriate callbacks to scenes
-		void keyJustPressed  (KeyMapping key, KeyModifier mod);
-		void keyJustReleased (KeyMapping key, KeyModifier mod);
-		void keyRepeat       (KeyMapping key, KeyModifier mod);
+        // InputManager Implementations can call these functions as appropriate, and the logic here will manage the appropriate callbacks to scenes
+        void keyJustPressed  (KeyMapping key, KeyModifier mod);
+        void keyJustReleased (KeyMapping key, KeyModifier mod);
+        void keyRepeat       (KeyMapping key, KeyModifier mod);
 
-		void windowCloseEvent();
+        void windowCloseEvent();
 
-	private:
+    private:
 
-		// The settings that determine how Key maps will map to actions. Set by user scenes
-		InputSettings settings_;
+        // The settings that determine how Key maps will map to actions. Set by user scenes
+        InputSettings settings_;
 
-		// To make callbacks too
-		std::vector<InputListener*> listeners_;
+        // To make callbacks too
+        std::vector<InputListener*> listeners_;
 
-		// We time how long states have been in the state they are in. If a repeat is called, we only send that to the listener if
-		// the repeat duration time has elapsed, otherwise it's ignored. 
-		using ClockType = std::chrono::steady_clock;
-		std::unordered_map<InputSettings::Action, ClockType::time_point> actionStartTimes_;
+        // We time how long states have been in the state they are in. If a repeat is called, we only send that to the listener if
+        // the repeat duration time has elapsed, otherwise it's ignored. 
+        using Clock = std::chrono::steady_clock;
+        std::unordered_map<InputSettings::Action, Clock::time_point> actionStartTimes_;
 
-	};
+    };
 }

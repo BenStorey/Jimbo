@@ -26,55 +26,55 @@
 namespace Jimbo
 {
 
-	class Application : boost::noncopyable
-	{
+    class Application : boost::noncopyable
+    {
 
-	public:
+    public:
 
-		enum class AudioEngine { IRRKLANG, SILENT };
+        enum class AudioEngine { IRRKLANG, SILENT };
 
-		Application() noexcept;
-		~Application();
+        Application() noexcept;
+        ~Application() noexcept;
 
-		void run();
+        void run();
 
-		// Window modes
-		void setWindowName(const std::string& name)	{ this->windowName_ = name; };
-		void setFullScreen(bool isFullScreen)       { this->fullScreen_ = isFullScreen; };
-		void setWindowSize(int x, int y)            { windowSizeX_ = x; windowSizeY_ = y; }
-		
-		// Audio choices
-		void setAudioEngine(AudioEngine ae)         { audioEngine_ = ae; }
+        // Window modes
+        void setWindowName(const std::string& name) { this->windowName_ = name; };
+        void setFullScreen(bool isFullScreen)       { this->fullScreen_ = isFullScreen; };
+        void setWindowSize(int x, int y)            { windowSizeX_ = x; windowSizeY_ = y; }
 
-		// Initial scene
-		void setStartupScene(Scene* scene)          { startupScene_ = scene; }
+        // Audio choices
+        void setAudioEngine(AudioEngine ae)         { audioEngine_ = ae; }
 
-		// Use optional for framerates, as you can pass an empty to turn it off
-		void capFrameRate(boost::optional<int> fps)	{ this->fps_ = fps; }
-		void capFrameRate(int fps)                  { this->fps_ = boost::make_optional(fps); }
-		boost::optional<int> getFrameRate()         { return fps_; }
+        // Initial scene
+        void setStartupScene(Scene* scene)          { startupScene_ = scene; }
 
-	private:
+        // Use optional for framerates, as you can pass an empty to turn it off
+        void capFrameRate(boost::optional<int> fps) { this->fps_ = fps; }
+        void capFrameRate(int fps)                  { this->fps_ = boost::make_optional(fps); }
+        boost::optional<int> getFrameRate() const   { return fps_; }
 
-		void initialise();
-		void setupWindow();
+    private:
 
-		Scene* startupScene_;
+        void initialise();
+        void setupWindow();
 
-		// Use unique pointer because we want ownership of it. 
-		AudioEngine audioEngine_;
-		std::unique_ptr<SoundManager> soundManager_;
-		std::unique_ptr<SceneManager> sceneManager_;
-		std::unique_ptr<EventManager> eventManager_;
-		std::unique_ptr<InputManager> inputManager_;
-		std::unique_ptr<Renderer>     renderer_;
+        Scene* startupScene_;
 
-		bool initialised_;
-		bool fullScreen_;
-		std::string windowName_;
-		boost::optional<int> fps_;
+        // Use unique pointer because we want ownership of it. 
+        AudioEngine audioEngine_;
+        std::unique_ptr<SoundManager> soundManager_;
+        std::unique_ptr<SceneManager> sceneManager_;
+        std::unique_ptr<EventManager> eventManager_;
+        std::unique_ptr<InputManager> inputManager_;
+        std::unique_ptr<Renderer>     renderer_;
 
-		int windowSizeX_;
-		int windowSizeY_;
-	};
+        bool initialised_;
+        bool fullScreen_;
+        std::string windowName_;
+        boost::optional<int> fps_;
+
+        int windowSizeX_;
+        int windowSizeY_;
+    };
 }

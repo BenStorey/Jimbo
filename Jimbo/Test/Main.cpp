@@ -27,20 +27,20 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int n
 int main()
 #endif
 {
-	// Testing event manager
-	TestEvents te;
-	te.doTest();
+    // Testing event manager
+    TestEvents te;
+    te.doTest();
 
-	boost::scoped_ptr<Application> app (new Application);
-	app->setFullScreen(false);
-	app->setWindowSize(800, 600);
-	app->setWindowName("Testing Engine");
-	app->setAudioEngine(Application::AudioEngine::IRRKLANG);
-	app->setStartupScene(new TestScene);
+    boost::scoped_ptr<Application> app (new Application);
+    app->setFullScreen(false);
+    app->setWindowSize(800, 600);
+    app->setWindowName("Testing Engine");
+    app->setAudioEngine(Application::AudioEngine::IRRKLANG);
+    app->setStartupScene(new TestScene);
 
-	app->capFrameRate(60);
+    app->capFrameRate(60);
 
-	app->run();
+    app->run();
 
-	return 0;
+    return 0;
 }

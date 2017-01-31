@@ -14,29 +14,29 @@
 
 namespace Jimbo
 {
-	class irrKlangSound : public Sound
-	{
-	public:
-		irrKlangSound(irrklang::ISoundEngine* engine) : engine_(engine), source_(nullptr), sound_(nullptr) { };
+    class irrKlangSound : public Sound
+    {
+    public:
+        irrKlangSound(irrklang::ISoundEngine* engine) : engine_(engine), source_(nullptr), sound_(nullptr) { };
         ~irrKlangSound();
 
-		bool loadFromFile(const std::string& file) override;
-		void release() override;
+        bool loadFromFile(const std::string& file) override;
+        void release() override;
 
-		void play() override;
-		void playLoop() override;
-		void stop() override;
+        void play() override;
+        void playLoop() override;
+        void stop() override;
 
-		void setPaused(bool) override;
-		bool isPaused() const override;
-		bool isPlaying() const override;
+        void setPaused(bool) override;
+        bool isPaused() const override;
+        bool isPlaying() const override;
 
-		void setVolume(float volume) override;
-		float getVolume() const override;
+        void setVolume(float volume) override;
+        float getVolume() const override;
 
-	private:
-		irrklang::ISoundEngine* engine_;
-		irrklang::ISoundSource* source_;
-		irrklang::ISound* sound_;
-	};
+    private:
+        irrklang::ISoundEngine* engine_;
+        irrklang::ISoundSource* source_;
+        irrklang::ISound* sound_;
+    };
 }

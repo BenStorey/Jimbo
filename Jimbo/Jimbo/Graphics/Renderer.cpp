@@ -12,10 +12,10 @@
 
 void Jimbo::Renderer::startRenderFrame()
 {
-	// Nothing to do
+    // Nothing to do
 }
 
 void Jimbo::Renderer::endRenderFrame()
 {
-	glfwSwapBuffers(static_cast<GLFWwindow*>(window_));
+    glfwSwapBuffers(static_cast<GLFWwindow*>(window_));
 }

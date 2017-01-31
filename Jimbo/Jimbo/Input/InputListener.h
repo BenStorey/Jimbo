@@ -11,17 +11,17 @@
 
 namespace Jimbo
 {
-	class InputListener
-	{
-	public:
-		// Keys
-		virtual void onKeyJustPressed(int action) = 0;
-		virtual void onKeyJustReleased(int action) = 0;
-		virtual void onKeyRepeat(int action) = 0;
+    class InputListener
+    {
+    public:
+        // Keys
+        virtual void onKeyJustPressed(int action) = 0;
+        virtual void onKeyJustReleased(int action) = 0;
+        virtual void onKeyRepeat(int action) = 0;
 
-		// Mouse todo..
+        // Mouse todo..
 
-		// Window events
-		virtual void onWindowCloseEvent() = 0;
-	};
+        // Window events
+        virtual void onWindowCloseEvent() = 0;
+    };
 }

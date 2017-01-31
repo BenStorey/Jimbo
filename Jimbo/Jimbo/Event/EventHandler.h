@@ -15,30 +15,30 @@
 
 namespace Jimbo
 {
-	// We have a base class because we need to store a list of these pointers to call
-	class EventHandlerBase
-	{
-	public:
-		virtual ~EventHandlerBase() { }
-	};
+    // We have a base class because we need to store a list of these pointers to call
+    class EventHandlerBase
+    {
+    public:
+        virtual ~EventHandlerBase() { }
+    };
 
-	// EventT in the template is the type of Event being subscribed to
-	template <class T>
-	class EventHandler : public EventHandlerBase
-	{
-	public:
+    // EventT in the template is the type of Event being subscribed to
+    template <class T>
+    class EventHandler : public EventHandlerBase
+    {
+    public:
 
-		template <class EventT>
-		void addEventHandler(void (T::*memFn)(const EventT&))
-		{
-			EventT::AddHandler(this, std::bind(memFn, static_cast<T*>(this), std::placeholders::_1));
-		}
+        template <class EventT>
+        void addEventHandler(void (T::*memFn)(const EventT&))
+        {
+            EventT::AddHandler(this, std::bind(memFn, static_cast<T*>(this), std::placeholders::_1));
+        }
 
-		template <class EventT>
-		void removeEventHandler()
-		{
-			EventT::RemoveHandler(this);
-		}
-	};
+        template <class EventT>
+        void removeEventHandler()
+        {
+            EventT::RemoveHandler(this);
+        }
+    };
 
 }

@@ -14,13 +14,13 @@
 
 namespace Jimbo
 {
-	class JimboException
-	{
-	public:
-		JimboException(const std::string& message) : message_(message) {}
-		const std::string& getMessage() const { return message_; }
+    class JimboException
+    {
+    public:
+        JimboException(const std::string& message) : message_(message) {}
+        const std::string& getMessage() const { return message_; }
 
-	private:
-		std::string message_;
-	};
+    private:
+        std::string message_;
+    };
 }

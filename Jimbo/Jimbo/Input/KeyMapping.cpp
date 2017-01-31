@@ -11,9 +11,9 @@
 
 namespace Jimbo
 {
-	KeyModifier KeyModifier::ShiftDown		= KeyModifier(MOD::SHIFT);
-	KeyModifier KeyModifier::ControlDown	= KeyModifier(MOD::CONTROL);
-	KeyModifier KeyModifier::AltDown		= KeyModifier(MOD::ALT);
-	KeyModifier KeyModifier::SuperDown		= KeyModifier(MOD::SUPER);
-	KeyModifier KeyModifier::NoModifier		= KeyModifier(0);
+    KeyModifier KeyModifier::ShiftDown      = KeyModifier(MOD::SHIFT);
+    KeyModifier KeyModifier::ControlDown    = KeyModifier(MOD::CONTROL);
+    KeyModifier KeyModifier::AltDown        = KeyModifier(MOD::ALT);
+    KeyModifier KeyModifier::SuperDown      = KeyModifier(MOD::SUPER);
+    KeyModifier KeyModifier::NoModifier     = KeyModifier(0);
 }

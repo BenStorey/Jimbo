@@ -16,14 +16,14 @@
 
 namespace Jimbo
 {
-	class SoundManager : boost::noncopyable
-	{
-	public:
-		virtual bool initialise() = 0;
-		virtual void shutdown() = 0;
+    class SoundManager : boost::noncopyable
+    {
+    public:
+        virtual bool initialise() = 0;
+        virtual void shutdown() = 0;
 
-		virtual void stopAllSounds() = 0;
+        virtual void stopAllSounds() = 0;
 
-		virtual std::unique_ptr<Sound> createSound() = 0;
-	};
+        virtual std::unique_ptr<Sound> createSound() = 0;
+    };
 }

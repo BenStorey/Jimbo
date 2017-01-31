@@ -11,5 +11,5 @@
 
 namespace Jimbo
 {
-	glfwInputManager* glfwInputManager::instance_ = nullptr;
+    glfwInputManager* glfwInputManager::instance_ = nullptr;
 }

@@ -12,16 +12,16 @@
 
 namespace Jimbo
 {
-	class Renderer
-	{
-	public:
-		Renderer(void* window) : window_(window) {}
+    class Renderer
+    {
+    public:
+        Renderer(void* window) : window_(window) {}
 
-		void startRenderFrame();
-		void endRenderFrame();
+        void startRenderFrame();
+        void endRenderFrame();
 
-	private:
+    private:
 
-		void* window_;
-	};
+        void* window_;
+    };
 }
