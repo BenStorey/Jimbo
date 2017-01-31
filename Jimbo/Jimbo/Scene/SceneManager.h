@@ -57,6 +57,7 @@ namespace Jimbo
         void checkNextScene();
         void checkEndApplication();
 
+        // rather than make a choice between 32 and 64 bit, rely on std::chrono::milliseconds
         std::chrono::milliseconds getElapsedTime() { auto now = Clock::now(); return std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime_); }
 
         // I have a tingling sense that the SceneManager shouldn't really take ownership of the Scene classes themselves
