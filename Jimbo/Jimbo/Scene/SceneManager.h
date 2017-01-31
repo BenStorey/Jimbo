@@ -57,7 +57,6 @@ namespace Jimbo
         void checkNextScene();
         void checkEndApplication();
 
-        // 32 bit unsigned lasts only for 49 days, lets use 64 bit so we don't need to worry about that!
         std::chrono::milliseconds getElapsedTime() { auto now = Clock::now(); return std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime_); }
 
         // I have a tingling sense that the SceneManager shouldn't really take ownership of the Scene classes themselves
@@ -79,6 +78,6 @@ namespace Jimbo
         InputManager* inputManager_;
         EventManager* eventManager_;
         SoundManager* soundManager_;
-        Renderer*      renderer_;
+        Renderer*     renderer_;
     };
 }
