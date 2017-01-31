@@ -1,0 +1,15 @@
+/////////////////////////////////////////////////////////
+// glfwInputManager.cpp
+//
+// Ben Storey
+//
+// A lone static declaration...
+//
+/////////////////////////////////////////////////////////
+
+#include "glfwInputManager.h"
+
+namespace Jimbo
+{
+	glfwInputManager* glfwInputManager::instance_ = nullptr;
+}

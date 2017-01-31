@@ -9,7 +9,8 @@
 /////////////////////////////////////////////////////////
 
 #include <memory>
-#include <boost\optional\optional.hpp>
+#include <boost/optional/optional.hpp>
+#include <boost/scoped_ptr.hpp>
 
 // Our Jimbo engine!
 #include <Jimbo.h>
@@ -17,6 +18,7 @@ using namespace Jimbo;
 
 // Testing
 #include "Test/TestEvents.h"
+#include "Test/TestScene.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -29,10 +31,12 @@ int main()
 	TestEvents te;
 	te.doTest();
 
-	auto app = std::make_unique<Application>();
+	boost::scoped_ptr<Application> app (new Application);
 	app->setFullScreen(false);
 	app->setWindowSize(800, 600);
 	app->setWindowName("Testing Engine");
+	app->setAudioEngine(Application::AudioEngine::IRRKLANG);
+	app->setStartupScene(new TestScene);
 
 	app->capFrameRate(60);
 

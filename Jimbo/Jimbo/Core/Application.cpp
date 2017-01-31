@@ -17,38 +17,48 @@
 #include <glad/glad.h>
 #include <glfw3.h>
 
+// We are using the irrKlang audio engine for now, can move it out when we want to use something free...
+#include "../Audio/irrKlang/irrKlangSoundManager.h"
+#include "../Audio/Silent/SilentSoundManager.h"
+#include "../Input/glfw/glfwInputManager.h"
 
-Jimbo::Application::Application()
+Jimbo::Application::Application() noexcept
 {
-	this->windowName_ = "Jimbo Project";
-	this->fps_ = 0;
+	// Defaults
+	windowName_ = "Jimbo Project";
+	audioEngine_ = AudioEngine::IRRKLANG;
 
-	//soundManager_ = nullptr;
+	soundManager_ = nullptr;
+	eventManager_ = nullptr;
+	sceneManager_ = nullptr;
+	inputManager_ = nullptr;
+	renderer_	  = nullptr;
 }
 
 Jimbo::Application::~Application()
 {
+
 }
 
 void Jimbo::Application::initialise()
 {
-	/*soundManager_.reset(new OpenALSoundManager);
-	
-	LOG("Initialising OpenAL Sound Manager");
+	// Switch depending on the choice
+	switch (audioEngine_)
+	{
+	case AudioEngine::IRRKLANG:
+		soundManager_.reset(new irrKlangSoundManager); break;
+	case AudioEngine::SILENT:
+		soundManager_.reset(new SilentSoundManager); break;
+	}
+
+	LOG("Initialising Sound Manager");
 	if (!soundManager_->initialise())
 	{
-		// We couldn't initialise the OpenALSoundManager. Therefore, use the debug one (that plays no sound)
-		soundManager_.reset(new DebugSoundManager);
-	}*/
+		// We couldn't initialise the given one. Therefore, use the debug one (that plays no sound)
+		soundManager_.reset(new SilentSoundManager);
+	}
 
-	initialised_ = true;
-}
-
-void Jimbo::Application::run()
-{
-	LOG("Initialising Application");
-	
-	initialise();
+	eventManager_.reset(new EventManager);
 
 	if (!glfwInit())
 	{
@@ -56,22 +66,27 @@ void Jimbo::Application::run()
 		throw new JimboException("Failed to initialise GLFW");
 	}
 
+	initialised_ = true;
+}
+
+void Jimbo::Application::setupWindow()
+{
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL 
 
-    // Open a window and create its OpenGL context
-	GLFWwindow* window = glfwCreateWindow(windowSizeX_, windowSizeY_, windowName_.c_str(), nullptr, nullptr);
-	
-	if (window == nullptr) 
+	// Open a window and create its OpenGL context
+	auto window = glfwCreateWindow(windowSizeX_, windowSizeY_, windowName_.c_str(), nullptr, nullptr);
+
+	if (window == nullptr)
 	{
 		glfwTerminate();
 		throw new JimboException("Unable to create application window");
 	}
-	
-	glfwMakeContextCurrent(window); 
+
+	glfwMakeContextCurrent(window);
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	// Initialise Glad
@@ -85,23 +100,31 @@ void Jimbo::Application::run()
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 
-	while (!glfwWindowShouldClose(window))
-	{
-		glfwPollEvents();
+	// Can now create our other input/scene managers that the window is available
+    renderer_.reset(new Renderer(window));
+	inputManager_.reset(new glfwInputManager(window));
+	sceneManager_.reset(new SceneManager(renderer_.get(), inputManager_.get(), eventManager_.get(), soundManager_.get()));
+}
 
-		// Close on ESC
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(window, GL_TRUE);
-		}
+void Jimbo::Application::run()
+{
+	LOG("Initialising Application");
+	
+	initialise();
+	setupWindow();
 
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+	// Ensure everything is initialised before running
+	inputManager_->initialise();
 
-		// Swap buffers
-		glfwSwapBuffers(window);
-	}
+	// Push the first scene of the world. Scene manager will take ownership of the pointer from here
+	sceneManager_->pushScene(startupScene_);
+
+	// Main game loop
+	sceneManager_->runGameLoop();
 
 	LOG("Shutting down Application");
+	soundManager_->shutdown();
+	inputManager_->shutdown();
+
 	glfwTerminate();
 }

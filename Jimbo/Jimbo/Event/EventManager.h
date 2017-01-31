@@ -14,6 +14,7 @@
 #include <functional>
 #include <algorithm>
 #include <memory>
+#include <boost/noncopyable.hpp>
 
 #include "Event.h"
 
@@ -21,7 +22,7 @@
 namespace Jimbo
 {
 
-	class EventManager
+	class EventManager : boost::noncopyable
 	{
 		// For now the EventManager keeps full ownership by using std::unique_ptr. It could also be very reasonable here
 		// to use shared pointers, so that the client can maintain their own reference to fired events if they choose to, without

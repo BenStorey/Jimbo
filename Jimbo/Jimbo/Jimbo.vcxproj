@@ -75,14 +75,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Glad\include;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Glad\include;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Glad.lib;glfw3.lib;OpenAL32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\irrKlang-1.5.0\lib;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Glad.lib;glfw3.lib;OpenAL32.lib;irrKlang.lib</AdditionalDependencies>
     </Lib>
     <PostBuildEvent>
       <Command>xcopy /d /y "$(SolutionDir)dlls\*.*" "$(OutDir)"</Command>
@@ -125,18 +125,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Audio\Silent\SilentSound.h" />
+    <ClInclude Include="Audio\irrKlang\irrKlangSound.h" />
+    <ClInclude Include="Audio\Silent\SilentSoundManager.h" />
+    <ClInclude Include="Audio\irrKlang\irrKlangSoundManager.h" />
+    <ClInclude Include="Audio\Sound.h" />
+    <ClInclude Include="Audio\SoundManager.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Exception.h" />
     <ClInclude Include="Core\Logging.h" />
-    <ClInclude Include="Core\Types.h" />
+    <ClInclude Include="Graphics\Renderer.h" />
+    <ClInclude Include="Input\glfw\glfwInputManager.h" />
+    <ClInclude Include="Input\InputListener.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Input\InputSettings.h" />
+    <ClInclude Include="Input\KeyMapping.h" />
     <ClInclude Include="Event\Event.h" />
     <ClInclude Include="Event\EventHandler.h" />
     <ClInclude Include="Event\EventManager.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Test\TestEvents.h" />
     <ClInclude Include="Jimbo.h" />
+    <ClInclude Include="Test\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Audio\irrKlang\irrKlangSound.cpp" />
+    <ClCompile Include="Audio\irrKlang\irrKlangSoundManager.cpp" />
     <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Graphics\Renderer.cpp" />
+    <ClCompile Include="Input\glfw\glfwInputManager.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
+    <ClCompile Include="Input\KeyMapping.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Test\TestScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

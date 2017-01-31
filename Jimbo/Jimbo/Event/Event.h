@@ -13,7 +13,6 @@
 
 #include <list>
 #include <functional>
-
 #include "EventHandler.h"
 
 namespace Jimbo
