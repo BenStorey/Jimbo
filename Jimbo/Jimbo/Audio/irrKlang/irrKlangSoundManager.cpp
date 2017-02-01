@@ -7,11 +7,10 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "irrKlangSoundManager.h"
+#include "audio/irrklang/irrklangsoundmanager.h"
 
-#include "../../Core/Logging.h"
-#include "../Sound.h"
-#include "irrKlangSound.h"
+#include "util/logging.h"
+#include "audio/irrklang/irrklangsound.h"
 
 bool Jimbo::irrKlangSoundManager::initialise()
 {

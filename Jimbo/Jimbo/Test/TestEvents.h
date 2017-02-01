@@ -59,6 +59,8 @@ namespace Jimbo
             mg.raiseEvent(new TestEvent("WE ARE BACK", 5));
             mg.raiseEvent(new TestEvent("HOPEFULLY", 6));
             mg.dispatchEvents();
+
+            mg.immediateDispatch(new TestEvent("Test Immediate Dispatch", 10));
         }
 
         void HandleEvent(const TestEvent& theEvent)

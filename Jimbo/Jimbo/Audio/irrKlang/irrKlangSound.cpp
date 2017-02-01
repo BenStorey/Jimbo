@@ -9,7 +9,7 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "irrKlangSound.h"
+#include "audio/irrklang/irrklangsound.h"
 
 Jimbo::irrKlangSound::~irrKlangSound()
 {

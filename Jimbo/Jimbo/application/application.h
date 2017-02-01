@@ -16,10 +16,10 @@
 #include <boost/optional/optional.hpp>
 #include <boost/noncopyable.hpp>
 
-#include "../Audio/SoundManager.h"
-#include "../Scene/Scene.h"
-#include "../Input/InputManager.h"
-#include "../Graphics/Renderer.h"
+#include "audio/soundManager.h"
+#include "scene/scene.h"
+#include "input/inputManager.h"
+#include "graphics/renderer.h"
 
 // We rely on GLFX and Glad for our application
 

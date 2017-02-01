@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <memory>
 #include <boost/noncopyable.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #include "Event.h"
 
@@ -53,12 +54,12 @@ namespace Jimbo
             queueInUse_->emplace_back(EventPtr(ev));
         }
 
-        // These events fire immediately without getting queued, which can be useful in some circumstances. 
-        // Since the EventManager always maintains ownership of these, we need to delete them after they've been fired
+        // We take ownership of these with a scoped ptr. As soon as the events have been dispatched, it will be
+        // destroyed as it goes out of scope
         void immediateDispatch(EventBase* ev)
         {
-            ev->dispatchEvent();
-            delete ev;
+            boost::scoped_ptr<EventBase> e(ev);
+            e->dispatchEvent();
         }
 
         // Not only dispatch, also delete the pointer afterwards!

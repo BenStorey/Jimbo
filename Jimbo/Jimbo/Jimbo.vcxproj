@@ -75,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Glad\include;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Jimbo\;$(SolutionDir)Glad\include;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -131,9 +131,8 @@
     <ClInclude Include="Audio\irrKlang\irrKlangSoundManager.h" />
     <ClInclude Include="Audio\Sound.h" />
     <ClInclude Include="Audio\SoundManager.h" />
-    <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\Exception.h" />
-    <ClInclude Include="Core\Logging.h" />
+    <ClInclude Include="application\application.h" />
+    <ClInclude Include="util\Logging.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Input\glfw\glfwInputManager.h" />
     <ClInclude Include="Input\InputListener.h" />
@@ -152,7 +151,7 @@
   <ItemGroup>
     <ClCompile Include="Audio\irrKlang\irrKlangSound.cpp" />
     <ClCompile Include="Audio\irrKlang\irrKlangSoundManager.cpp" />
-    <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="application\application.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Input\glfw\glfwInputManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />

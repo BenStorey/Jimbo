@@ -8,19 +8,18 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "Application.h"
-#include "Logging.h"
-#include "Exception.h"
-
 // We are going to be depending on glfw for window management. So that clients don't need to also have it in their include
 // path, we include here in the cpp only. glad is used for OpenGL setup
 #include <glad/glad.h>
 #include <glfw3.h>
 
+#include "application/application.h"
+#include "util/logging.h"
+
 // We are using the irrKlang audio engine for now, can move it out when we want to use something free...
-#include "../Audio/irrKlang/irrKlangSoundManager.h"
-#include "../Audio/Silent/SilentSoundManager.h"
-#include "../Input/glfw/glfwInputManager.h"
+#include "audio/irrKlang/irrklangsoundmanager.h"
+#include "audio/silent/silentsoundmanager.h"
+#include "input/glfw/glfwinputmanager.h"
 
 Jimbo::Application::Application() noexcept
 {
@@ -63,7 +62,7 @@ void Jimbo::Application::initialise()
     if (!glfwInit())
     {
         LOG("Failed to initialize GLFW\n");
-        throw new JimboException("Failed to initialise GLFW");
+        throw new std::runtime_error("Jimbo - Failed to initialise GLFW");
     }
 
     initialised_ = true;
@@ -83,7 +82,7 @@ void Jimbo::Application::setupWindow()
     if (window == nullptr)
     {
         glfwTerminate();
-        throw new JimboException("Unable to create application window");
+        throw new std::runtime_error("Jimbo - Unable to create application window");
     }
 
     glfwMakeContextCurrent(window);
@@ -93,7 +92,7 @@ void Jimbo::Application::setupWindow()
     if (!gladLoadGL())
     {
         LOG("Failed to initialize Glad\n");
-        throw new JimboException("Failed to initialise OpenGL");
+        throw new std::runtime_error("Jimbo - Failed to initialise OpenGL");
     }
 
     int width, height;

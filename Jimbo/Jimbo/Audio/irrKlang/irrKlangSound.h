@@ -9,8 +9,8 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "../Sound.h"
-#include "irrKlangSoundManager.h"
+#include "audio/sound.h"
+#include "audio/irrklang/irrklangsoundmanager.h"
 
 namespace Jimbo
 {
