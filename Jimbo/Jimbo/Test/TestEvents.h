@@ -10,15 +10,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <string>
-#include "../Event/Event.h"
-#include "../Event/EventManager.h"
-#include "../Core/Logging.h"
+#include "event/event.h"
+#include "event/eventManager.h"
+#include "util/logging.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class TestEvents : public EventHandler<TestEvents>
     {
-        class TestEvent : public Jimbo::Event<TestEvent>
+        class TestEvent : public jimbo::Event<TestEvent>
         {
         public:
             TestEvent(std::string m, int num) : m_(m), n_(num) { LOG("TestEvent created with " + m); }

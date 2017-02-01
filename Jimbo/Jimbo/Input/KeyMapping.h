@@ -9,7 +9,7 @@
 //
 /////////////////////////////////////////////////////////
 
-namespace Jimbo
+namespace jimbo
 {
     // Just provides a nice interface. Probably not the most efficient implementation but hopefully the compiler will mostly
     // optimise it away. I'm prioritising a nice user experience over efficiency at the moment!

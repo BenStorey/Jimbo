@@ -17,10 +17,10 @@
 #include <boost/noncopyable.hpp>
 #include <boost/scoped_ptr.hpp>
 
-#include "Event.h"
+#include "event/event.h"
 
 
-namespace Jimbo
+namespace jimbo
 {
 
     class EventManager : boost::noncopyable

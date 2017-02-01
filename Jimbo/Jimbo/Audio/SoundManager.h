@@ -11,10 +11,10 @@
 
 #include <string>
 #include <memory>
-#include "Sound.h"
 #include <boost/noncopyable.hpp>
+#include "audio/sound.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class SoundManager : boost::noncopyable
     {

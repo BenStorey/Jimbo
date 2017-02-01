@@ -21,7 +21,7 @@
 #include "audio/silent/silentsoundmanager.h"
 #include "input/glfw/glfwinputmanager.h"
 
-Jimbo::Application::Application() noexcept
+jimbo::Application::Application() noexcept
 {
     // Defaults
     windowName_ = "Jimbo Project";
@@ -34,12 +34,12 @@ Jimbo::Application::Application() noexcept
     renderer_      = nullptr;
 }
 
-Jimbo::Application::~Application() noexcept
+jimbo::Application::~Application() noexcept
 {
 
 }
 
-void Jimbo::Application::initialise()
+void jimbo::Application::initialise()
 {
     // Switch depending on the choice
     switch (audioEngine_)
@@ -68,7 +68,7 @@ void Jimbo::Application::initialise()
     initialised_ = true;
 }
 
-void Jimbo::Application::setupWindow()
+void jimbo::Application::setupWindow()
 {
     glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -105,7 +105,7 @@ void Jimbo::Application::setupWindow()
     sceneManager_.reset(new SceneManager(renderer_.get(), inputManager_.get(), eventManager_.get(), soundManager_.get()));
 }
 
-void Jimbo::Application::run()
+void jimbo::Application::run()
 {
     LOG("Initialising Application");
     

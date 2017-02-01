@@ -12,7 +12,7 @@
 #include "audio/sound.h"
 #include "audio/irrklang/irrklangsoundmanager.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class irrKlangSound : public Sound
     {

@@ -13,9 +13,9 @@
 
 #include <unordered_map>
 #include <boost/optional/optional.hpp>
-#include "KeyMapping.h"
+#include "input/keymapping.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class InputSettings
     {

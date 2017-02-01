@@ -13,9 +13,9 @@
 
 #include <list>
 #include <functional>
-#include "EventHandler.h"
+#include "event/eventhandler.h"
 
-namespace Jimbo
+namespace jimbo
 {
     // Base class that the EventManager stores pointers to
     class EventBase

@@ -8,14 +8,14 @@
 /////////////////////////////////////////////////////////
 
 #include <glfw3.h>
-#include "Renderer.h"
+#include "graphics/renderer.h"
 
-void Jimbo::Renderer::startRenderFrame()
+void jimbo::Renderer::startRenderFrame()
 {
     // Nothing to do
 }
 
-void Jimbo::Renderer::endRenderFrame()
+void jimbo::Renderer::endRenderFrame()
 {
     glfwSwapBuffers(static_cast<GLFWwindow*>(window_));
 }

@@ -8,10 +8,10 @@
 /////////////////////////////////////////////////////////
 
 #include <chrono>
-#include "SceneManager.h"
-#include "Scene.h"
+#include "scene/scenemanager.h"
+#include "scene/scene.h"
 
-void Jimbo::SceneManager::runGameLoop()
+void jimbo::SceneManager::runGameLoop()
 {
     startTime_ = Clock::now();
     
@@ -44,7 +44,7 @@ void Jimbo::SceneManager::runGameLoop()
 }
 
 // Manage our scene stack
-void Jimbo::SceneManager::checkNextScene()
+void jimbo::SceneManager::checkNextScene()
 {
     while (popScene_ > 0)
     {
@@ -73,7 +73,7 @@ void Jimbo::SceneManager::checkNextScene()
     }
 }
 
-void Jimbo::SceneManager::checkEndApplication()
+void jimbo::SceneManager::checkEndApplication()
 {
     if (gameEnding_)
     {

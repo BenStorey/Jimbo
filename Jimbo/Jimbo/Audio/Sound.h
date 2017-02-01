@@ -12,7 +12,7 @@
 #include <string>
 #include <boost/noncopyable.hpp>
 
-namespace Jimbo
+namespace jimbo
 {
     // A 2D Sound. Eventually I'll need to support 3D sounds also
     class Sound : boost::noncopyable

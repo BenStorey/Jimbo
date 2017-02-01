@@ -13,7 +13,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-namespace Jimbo
+namespace jimbo
 {
     // We have a base class because we need to store a list of these pointers to call
     class EventHandlerBase

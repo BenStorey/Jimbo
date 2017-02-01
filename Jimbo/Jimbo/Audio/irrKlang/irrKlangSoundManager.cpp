@@ -8,29 +8,27 @@
 /////////////////////////////////////////////////////////
 
 #include "audio/irrklang/irrklangsoundmanager.h"
-
-#include "util/logging.h"
 #include "audio/irrklang/irrklangsound.h"
 
-bool Jimbo::irrKlangSoundManager::initialise()
+bool jimbo::irrKlangSoundManager::initialise()
 {
     engine_ = irrklang::createIrrKlangDevice();
     return engine_ != nullptr;
 }
 
-void Jimbo::irrKlangSoundManager::shutdown()
+void jimbo::irrKlangSoundManager::shutdown()
 {
     if (engine_)
         engine_->drop();
 }
 
-void Jimbo::irrKlangSoundManager::stopAllSounds()
+void jimbo::irrKlangSoundManager::stopAllSounds()
 {
     if (engine_)
         engine_->stopAllSounds();
 }
 
-std::unique_ptr<Jimbo::Sound> Jimbo::irrKlangSoundManager::createSound()
+std::unique_ptr<jimbo::Sound> jimbo::irrKlangSoundManager::createSound()
 {
     return std::unique_ptr<Sound>(new irrKlangSound(engine_));
 }

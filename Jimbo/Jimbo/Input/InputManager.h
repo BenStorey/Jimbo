@@ -17,10 +17,10 @@
 #include <chrono>
 #include <boost/noncopyable.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
-#include "InputListener.h"
-#include "InputSettings.h"
+#include "input/inputlistener.h"
+#include "input/inputsettings.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class InputManager : boost::noncopyable
     {

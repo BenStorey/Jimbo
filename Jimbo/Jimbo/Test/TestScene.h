@@ -9,10 +9,10 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-#include "../Scene/Scene.h"
-#include "../Core/Logging.h"
+#include "scene/scene.h"
+#include "util/logging.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class TestScene : public Scene
     {

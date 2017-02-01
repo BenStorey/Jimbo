@@ -13,13 +13,13 @@
 #include <memory>
 #include <chrono>
 #include <boost/noncopyable.hpp>
-#include "../Event/EventManager.h"
-#include "../Audio/SoundManager.h"
-#include "../Input/InputManager.h"
-#include "../Graphics/Renderer.h"
-#include "../Core/Logging.h"
+#include "event/eventmanager.h"
+#include "audio/soundmanager.h"
+#include "input/inputManager.h"
+#include "graphics/renderer.h"
+#include "util/logging.h"
 
-namespace Jimbo
+namespace jimbo
 {
     // Forward declaration for a scene, since both include each other
     class Scene;

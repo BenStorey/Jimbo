@@ -7,9 +7,9 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "KeyMapping.h"
+#include "input/keymapping.h"
 
-namespace Jimbo
+namespace jimbo
 {
     KeyModifier KeyModifier::ShiftDown      = KeyModifier(MOD::SHIFT);
     KeyModifier KeyModifier::ControlDown    = KeyModifier(MOD::CONTROL);

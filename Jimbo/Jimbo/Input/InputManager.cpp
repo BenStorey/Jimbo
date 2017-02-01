@@ -5,10 +5,10 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "InputManager.h"
+#include "input/inputmanager.h"
 
 // Store the start time and do our callbacks
-void Jimbo::InputManager::keyJustPressed(KeyMapping key, KeyModifier mod)
+void jimbo::InputManager::keyJustPressed(KeyMapping key, KeyModifier mod)
 {
     auto action = settings_.getAction(key, mod);
     if (action)
@@ -19,7 +19,7 @@ void Jimbo::InputManager::keyJustPressed(KeyMapping key, KeyModifier mod)
 }
 
 // Clear it from the map when released and do all our callbacks
-void Jimbo::InputManager::keyJustReleased(KeyMapping key, KeyModifier mod)
+void jimbo::InputManager::keyJustReleased(KeyMapping key, KeyModifier mod)
 {
     auto action = settings_.getAction(key, mod);
     if (action)
@@ -30,7 +30,7 @@ void Jimbo::InputManager::keyJustReleased(KeyMapping key, KeyModifier mod)
 }
 
 // Check how long since it was pressed, and only callback if its longer than the repeat interval
-void Jimbo::InputManager::keyRepeat(KeyMapping key, KeyModifier mod)
+void jimbo::InputManager::keyRepeat(KeyMapping key, KeyModifier mod)
 {
     auto action = settings_.getAction(key, mod);
     if (!action) return;
@@ -55,7 +55,7 @@ void Jimbo::InputManager::keyRepeat(KeyMapping key, KeyModifier mod)
     }
 }
 
-void Jimbo::InputManager::windowCloseEvent()
+void jimbo::InputManager::windowCloseEvent()
 {
     std::for_each(listeners_.cbegin(), listeners_.cend(), [](const auto& it) { it->onWindowCloseEvent(); });
 }

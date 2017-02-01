@@ -9,7 +9,7 @@
 //
 /////////////////////////////////////////////////////////
 
-namespace Jimbo
+namespace jimbo
 {
     class InputListener
     {

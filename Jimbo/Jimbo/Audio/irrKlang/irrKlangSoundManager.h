@@ -12,7 +12,7 @@
 #include <irrKlang.h>
 #include "audio/soundmanager.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class irrKlangSoundManager : public SoundManager
     {

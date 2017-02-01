@@ -11,12 +11,12 @@
 
 #include "audio/irrklang/irrklangsound.h"
 
-Jimbo::irrKlangSound::~irrKlangSound()
+jimbo::irrKlangSound::~irrKlangSound()
 {
     release();
 }
 
-bool Jimbo::irrKlangSound::loadFromFile(const std::string & file)
+bool jimbo::irrKlangSound::loadFromFile(const std::string & file)
 {
     source_ = engine_->addSoundSourceFromFile(file.c_str());
 
@@ -27,7 +27,7 @@ bool Jimbo::irrKlangSound::loadFromFile(const std::string & file)
     return source_ != nullptr;
 }
 
-void Jimbo::irrKlangSound::release()
+void jimbo::irrKlangSound::release()
 {
     if (sound_)
     {
@@ -42,47 +42,47 @@ void Jimbo::irrKlangSound::release()
     }
 }
 
-void Jimbo::irrKlangSound::play()
+void jimbo::irrKlangSound::play()
 {
     sound_ = engine_->play2D(source_, false);
 }
 
-void Jimbo::irrKlangSound::stop()
+void jimbo::irrKlangSound::stop()
 {
     if (sound_)
         sound_->stop();
 }
 
-void Jimbo::irrKlangSound::playLoop()
+void jimbo::irrKlangSound::playLoop()
 {
     if (source_)
         sound_ = engine_->play2D(source_, true);
 }
 
-void Jimbo::irrKlangSound::setPaused(bool paused)
+void jimbo::irrKlangSound::setPaused(bool paused)
 {
     if(sound_)
         sound_->setIsPaused(paused);
 }
 
-bool Jimbo::irrKlangSound::isPaused() const
+bool jimbo::irrKlangSound::isPaused() const
 {
     if (!sound_) return false;
     return sound_->getIsPaused();
 }
 
-bool Jimbo::irrKlangSound::isPlaying() const
+bool jimbo::irrKlangSound::isPlaying() const
 {
     return engine_->isCurrentlyPlaying(source_);
 }
 
-void Jimbo::irrKlangSound::setVolume(float volume)
+void jimbo::irrKlangSound::setVolume(float volume)
 {
     if (sound_)
         sound_->setVolume(volume);
 }
 
-float Jimbo::irrKlangSound::getVolume() const
+float jimbo::irrKlangSound::getVolume() const
 {
     if (!sound_) return 1;
     return sound_->getVolume();

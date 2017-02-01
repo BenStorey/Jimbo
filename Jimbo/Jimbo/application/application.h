@@ -23,7 +23,7 @@
 
 // We rely on GLFX and Glad for our application
 
-namespace Jimbo
+namespace jimbo
 {
 
     class Application : boost::noncopyable

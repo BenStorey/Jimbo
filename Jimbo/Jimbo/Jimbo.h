@@ -19,15 +19,15 @@
 #pragma comment(lib, "irrKlang.lib")
 
 // Include the rest of our engine so client doesn't have to
-#include "Core/Application.h"
+#include "application/application.h"
 
 // Events
-#include "Event/Event.h"
-#include "Event/EventHandler.h"
-#include "Event/EventManager.h"
+#include "event/event.h"
+#include "event/eventhandler.h"
+#include "event/eventmanager.h"
 
 // Input
-#include "Input/KeyMapping.h"
+#include "input/keymapping.h"
 
 // Scenes to override
-#include "Scene/Scene.h"
+#include "scene/scene.h"

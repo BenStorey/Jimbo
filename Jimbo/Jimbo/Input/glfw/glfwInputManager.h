@@ -9,10 +9,10 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "../InputManager.h"
 #include <glfw3.h>
+#include "input/inputmanager.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class glfwInputManager : public InputManager
     {

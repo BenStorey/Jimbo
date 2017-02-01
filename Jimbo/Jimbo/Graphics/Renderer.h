@@ -10,7 +10,7 @@
 //
 /////////////////////////////////////////////////////////
 
-namespace Jimbo
+namespace jimbo
 {
     class Renderer
     {

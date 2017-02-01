@@ -7,9 +7,9 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "glfwInputManager.h"
+#include "input/glfw/glfwinputmanager.h"
 
-namespace Jimbo
+namespace jimbo
 {
     glfwInputManager* glfwInputManager::instance_ = nullptr;
 }

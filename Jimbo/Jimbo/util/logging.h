@@ -17,9 +17,9 @@
 #endif
 
 // Helper if you want file/line numbers
-#define LOG(x) Jimbo::Log::d(x, __FILE__, __LINE__ );
+#define LOG(x) jimbo::Log::d(x, __FILE__, __LINE__ );
 
-namespace Jimbo
+namespace jimbo
 {
     class Log
     {

@@ -9,10 +9,10 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "../Sound.h"
-#include "../../Core/Logging.h"
+#include "audio/sound.h"
+#include "util/logging.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class SilentSound : public Sound
     {

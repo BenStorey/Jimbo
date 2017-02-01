@@ -9,11 +9,11 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "../SoundManager.h"
-#include "SilentSound.h"
-#include "../../Core/Logging.h"
+#include "audio/soundmanager.h"
+#include "audio/silent/silentsound.h"
+#include "util/logging.h"
 
-namespace Jimbo
+namespace jimbo
 {
     class SilentSoundManager : public SoundManager
     {
@@ -34,7 +34,7 @@ namespace Jimbo
             LOG("Stopping all sounds");
         }
 
-        std::unique_ptr<Jimbo::Sound> Jimbo::SilentSoundManager::createSound()
+        std::unique_ptr<jimbo::Sound> jimbo::SilentSoundManager::createSound()
         {
             return std::unique_ptr<Sound>(new SilentSound);
         }

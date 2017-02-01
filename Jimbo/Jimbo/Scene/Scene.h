@@ -10,14 +10,14 @@
 /////////////////////////////////////////////////////////
 
 #include <chrono>
-#include "../Input/KeyMapping.h"
-#include "../Input/InputSettings.h"
-#include "../Input/InputListener.h"
-#include "../Event/EventManager.h"
-#include "../Audio/SoundManager.h"
-#include "SceneManager.h"
+#include "input/keymapping.h"
+#include "input/inputsettings.h"
+#include "input/inputlistener.h"
+#include "event/eventmanager.h"
+#include "audio/soundmanager.h"
+#include "scene/scenemanager.h"
 
-namespace Jimbo
+namespace jimbo
 {
     // Circular dependency, so forward declaration
     class SceneManager;
