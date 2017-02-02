@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_AUDIO_SOUND_HPP
+#define JIMBO_AUDIO_SOUND_HPP
 
 /////////////////////////////////////////////////////////
 // Sound.h
@@ -40,3 +42,5 @@ namespace jimbo
         virtual float getVolume() const = 0;
     };
 }
+
+#endif // JIMBO_AUDIO_SOUND_HPP

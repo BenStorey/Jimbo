@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_AUDIO_SOUNDMANAGER_HPP
+#define JIMBO_AUDIO_SOUNDMANAGER_HPP
 
 /////////////////////////////////////////////////////////
 // SoundManager.h
@@ -12,10 +14,11 @@
 #include <string>
 #include <memory>
 #include <boost/noncopyable.hpp>
-#include "audio/sound.h"
 
 namespace jimbo
 {
+    class Sound;
+
     class SoundManager : boost::noncopyable
     {
     public:
@@ -27,3 +30,5 @@ namespace jimbo
         virtual std::unique_ptr<Sound> createSound() = 0;
     };
 }
+
+#endif // JIMBO_AUDIO_SOUNDMANAGER_HPP

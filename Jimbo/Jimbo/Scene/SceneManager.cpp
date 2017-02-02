@@ -8,8 +8,10 @@
 /////////////////////////////////////////////////////////
 
 #include <chrono>
-#include "scene/scenemanager.h"
-#include "scene/scene.h"
+#include "scene/scenemanager.hpp"
+#include "scene/scene.hpp"
+#include "graphics/renderer.hpp"
+#include "input/inputmanager.hpp"
 
 void jimbo::SceneManager::runGameLoop()
 {

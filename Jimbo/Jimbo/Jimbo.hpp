@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_ENGINE_HPP
+#define JIMBO_ENGINE_HPP
 
 /////////////////////////////////////////////////////////
-// Application.h
+// Jimbo.hpp
 //
 // Ben Storey
 //
@@ -19,15 +21,17 @@
 #pragma comment(lib, "irrKlang.lib")
 
 // Include the rest of our engine so client doesn't have to
-#include "application/application.h"
+#include "application/application.hpp"
 
 // Events
-#include "event/event.h"
-#include "event/eventhandler.h"
-#include "event/eventmanager.h"
+#include "event/event.hpp"
+#include "event/eventhandler.hpp"
+#include "event/eventmanager.hpp"
 
 // Input
-#include "input/keymapping.h"
+#include "input/keymapping.hpp"
 
 // Scenes to override
-#include "scene/scene.h"
+#include "scene/scene.hpp"
+
+#endif // JIMBO_ENGINE_HPP

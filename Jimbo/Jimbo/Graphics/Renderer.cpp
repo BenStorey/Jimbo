@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////
 
 #include <glfw3.h>
-#include "graphics/renderer.h"
+#include "graphics/renderer.hpp"
 
 void jimbo::Renderer::startRenderFrame()
 {

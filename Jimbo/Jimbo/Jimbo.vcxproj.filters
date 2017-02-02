@@ -15,70 +15,70 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Jimbo.h">
+    <ClInclude Include="Audio\irrKlang\irrklangsound.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\Silent\SilentSound.h">
+    <ClInclude Include="application\application.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\Silent\SilentSoundManager.h">
+    <ClInclude Include="Audio\irrKlang\irrklangsoundmanager.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event\Event.h">
+    <ClInclude Include="Audio\Silent\silentsound.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event\EventHandler.h">
+    <ClInclude Include="Audio\Silent\silentsoundmanager.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event\EventManager.h">
+    <ClInclude Include="Audio\sound.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Renderer.h">
+    <ClInclude Include="Audio\soundmanager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\glfw\glfwInputManager.h">
+    <ClInclude Include="Event\event.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\InputListener.h">
+    <ClInclude Include="Event\eventhandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\InputManager.h">
+    <ClInclude Include="Event\eventmanager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\InputSettings.h">
+    <ClInclude Include="Graphics\renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\KeyMapping.h">
+    <ClInclude Include="Input\glfw\glfwinputmanager.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Scene.h">
+    <ClInclude Include="Input\keymapping.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneManager.h">
+    <ClInclude Include="Input\inputsettings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test\TestEvents.h">
+    <ClInclude Include="Input\inputmanager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test\TestScene.h">
+    <ClInclude Include="Input\inputlistener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="application\application.h">
+    <ClInclude Include="Test\testscene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\Sound.h">
+    <ClInclude Include="Test\testevents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\Logging.h">
+    <ClInclude Include="Scene\scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\SoundManager.h">
+    <ClInclude Include="Scene\scenemanager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\irrKlang\irrKlangSound.h">
+    <ClInclude Include="util\logging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\irrKlang\irrKlangSoundManager.h">
+    <ClInclude Include="Jimbo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,13 +101,13 @@
     <ClCompile Include="Test\TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="application\application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Audio\irrKlang\irrKlangSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Audio\irrKlang\irrKlangSoundManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

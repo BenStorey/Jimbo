@@ -7,8 +7,8 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "audio/irrklang/irrklangsoundmanager.h"
-#include "audio/irrklang/irrklangsound.h"
+#include "audio/irrklang/irrklangsoundmanager.hxx"
+#include "audio/irrklang/irrklangsound.hxx"
 
 bool jimbo::irrKlangSoundManager::initialise()
 {

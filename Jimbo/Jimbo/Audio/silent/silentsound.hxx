@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_AUDIO_SILENT_SILENTSOUND_HXX
+#define JIMBO_AUDIO_SILENT_SILENTSOUND_HXX
 
 /////////////////////////////////////////////////////////
-// SilentSound.h
+// silentsound.hxx
 //
 // Ben Storey
 //
@@ -9,8 +11,8 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "audio/sound.h"
-#include "util/logging.h"
+#include "audio/sound.hpp"
+#include "util/logging.hpp"
 
 namespace jimbo
 {
@@ -38,3 +40,5 @@ namespace jimbo
         float getVolume()            const override { LOG("SilentSound::getVolume()"); return 1.0f; }
     };
 }
+
+#endif // JIMBO_AUDIO_SILENT_SILENTSOUND_HXX

@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_SCENE_SCENEMANAGER_HPP
+#define JIMBO_SCENE_SCENEMANAGER_HPP
 
 /////////////////////////////////////////////////////////
 // SceneManager.h
@@ -13,16 +15,16 @@
 #include <memory>
 #include <chrono>
 #include <boost/noncopyable.hpp>
-#include "event/eventmanager.h"
-#include "audio/soundmanager.h"
-#include "input/inputManager.h"
-#include "graphics/renderer.h"
-#include "util/logging.h"
+#include "util/logging.hpp"
 
 namespace jimbo
 {
     // Forward declaration for a scene, since both include each other
     class Scene;
+    class EventManager;
+    class SoundManager;
+    class InputManager;
+    class Renderer;
 
     class SceneManager : boost::noncopyable
     {
@@ -82,3 +84,5 @@ namespace jimbo
         Renderer*     renderer_;
     };
 }
+
+#endif // JIMBO_SCENE_SCENEMANAGER_HPP

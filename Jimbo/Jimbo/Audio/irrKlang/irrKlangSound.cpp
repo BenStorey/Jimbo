@@ -1,5 +1,3 @@
-#pragma once
-
 /////////////////////////////////////////////////////////
 // irrKlangSound.cpp
 //
@@ -9,7 +7,7 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "audio/irrklang/irrklangsound.h"
+#include "audio/irrklang/irrklangsound.hxx"
 
 jimbo::irrKlangSound::~irrKlangSound()
 {

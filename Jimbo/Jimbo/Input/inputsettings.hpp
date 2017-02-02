@@ -1,4 +1,5 @@
-#pragma once
+#ifndef JIMBO_INPUT_INPUTSETTINGS_HPP
+#define JIMBO_INPUT_INPUTSETTINGS_HPP
 
 /////////////////////////////////////////////////////////
 // InputSettings.h
@@ -13,10 +14,13 @@
 
 #include <unordered_map>
 #include <boost/optional/optional.hpp>
-#include "input/keymapping.h"
+
+#include "input/keymapping.hpp"
 
 namespace jimbo
 {
+    enum class KeyMapping : unsigned int;
+
     class InputSettings
     {
 
@@ -93,3 +97,5 @@ namespace jimbo
         std::unordered_map<Action, std::chrono::milliseconds> repeatIntervals_;
     };
 }
+
+#endif // JIMBO_INPUT_INPUTSETTINGS_HPP

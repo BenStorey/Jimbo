@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_EVENT_EVENT_HPP
+#define JIMBO_EVENT_EVENT_HPP
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// Event.h
+// event.hpp
 //
 // Ben Storey
 //
@@ -13,7 +15,7 @@
 
 #include <list>
 #include <functional>
-#include "event/eventhandler.h"
+#include "event/eventhandler.hpp"
 
 namespace jimbo
 {
@@ -59,3 +61,5 @@ namespace jimbo
     // Static handlers need to be defined
     template <class T> CallbackList<T> Event<T>::handlers;
 }
+
+#endif // JIMBO_EVENT_EVENT_HPP

@@ -7,7 +7,7 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "input/keymapping.h"
+#include "input/keymapping.hpp"
 
 namespace jimbo
 {

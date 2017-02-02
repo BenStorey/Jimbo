@@ -13,15 +13,19 @@
 #include <glad/glad.h>
 #include <glfw3.h>
 
-#include "application/application.h"
-#include "util/logging.h"
+#include "application/application.hpp"
+#include "util/logging.hpp"
 
 // We are using the irrKlang audio engine for now, can move it out when we want to use something free...
-#include "audio/irrKlang/irrklangsoundmanager.h"
-#include "audio/silent/silentsoundmanager.h"
-#include "input/glfw/glfwinputmanager.h"
+#include "event/eventmanager.hpp"
+#include "graphics/renderer.hpp"
+#include "scene/scene.hpp"
+#include "scene/scenemanager.hpp"
+#include "audio/irrKlang/irrklangsoundmanager.hxx"
+#include "audio/silent/silentsoundmanager.hxx"
+#include "input/glfw/glfwinputmanager.hxx"
 
-jimbo::Application::Application() noexcept
+jimbo::Application::Application() 
 {
     // Defaults
     windowName_ = "Jimbo Project";
@@ -34,7 +38,7 @@ jimbo::Application::Application() noexcept
     renderer_      = nullptr;
 }
 
-jimbo::Application::~Application() noexcept
+jimbo::Application::~Application() 
 {
 
 }

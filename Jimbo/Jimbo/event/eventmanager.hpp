@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_EVENT_EVENTMANAGER_HPP
+#define JIMBO_EVENT_EVENTMANAGER_HPP
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// EventManager.h
+// eventmanager.hpp
 //
 // Ben Storey
 //
@@ -17,8 +19,7 @@
 #include <boost/noncopyable.hpp>
 #include <boost/scoped_ptr.hpp>
 
-#include "event/event.h"
-
+#include "event/event.hpp"
 
 namespace jimbo
 {
@@ -76,3 +77,5 @@ namespace jimbo
     };
 
 }
+
+#endif // JIMBO_EVENT_EVENTMANAGER_HPP

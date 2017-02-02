@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_INPUT_INPUTMANAGER_HPP
+#define JIMBO_INPUT_INPUTMANAGER_HPP
 
 /////////////////////////////////////////////////////////
 // InputManager.h
@@ -14,14 +16,17 @@
 //
 /////////////////////////////////////////////////////////
 
+#include <vector>
 #include <chrono>
+#include <unordered_map>
 #include <boost/noncopyable.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
-#include "input/inputlistener.h"
-#include "input/inputsettings.h"
+#include "input/inputsettings.hpp"
 
 namespace jimbo
 {
+    class InputListener;
+
     class InputManager : boost::noncopyable
     {
     public:
@@ -65,3 +70,5 @@ namespace jimbo
 
     };
 }
+
+#endif // JIMBO_INPUT_INPUTMANAGER_HPP

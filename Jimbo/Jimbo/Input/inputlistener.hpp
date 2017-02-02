@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_INPUT_INPUTLISTENER_HPP
+#define JIMBO_INPUT_INPUTLISTENER_HPP
 
 /////////////////////////////////////////////////////////
 // InputListener.h
@@ -25,3 +27,5 @@ namespace jimbo
         virtual void onWindowCloseEvent() = 0;
     };
 }
+
+#endif // JIMBO_INPUT_INPUTLISTENER_HPP

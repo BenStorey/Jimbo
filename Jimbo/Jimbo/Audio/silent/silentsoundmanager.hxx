@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_AUDIO_SILENT_SILENTSOUNDMANAGER_HXX
+#define JIMBO_AUDIO_SILENT_SILENTSOUNDMANAGER_HXX
 
 /////////////////////////////////////////////////////////
-// DebugSoundManager.h
+// silentsoundmanager.hxx
 //
 // Ben Storey
 //
@@ -9,9 +11,9 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "audio/soundmanager.h"
-#include "audio/silent/silentsound.h"
-#include "util/logging.h"
+#include "util/logging.hpp"
+#include "audio/soundmanager.hpp"
+#include "audio/silent/silentsound.hxx"
 
 namespace jimbo
 {
@@ -40,3 +42,5 @@ namespace jimbo
         }
     };
 }
+
+#endif // JIMBO_AUDIO_SILENT_SILENTSOUNDMANAGER_HXX

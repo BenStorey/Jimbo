@@ -5,7 +5,9 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "input/inputmanager.h"
+#include "input/inputmanager.hpp"
+#include "input/inputlistener.hpp"
+#include "input/keymapping.hpp"
 
 // Store the start time and do our callbacks
 void jimbo::InputManager::keyJustPressed(KeyMapping key, KeyModifier mod)

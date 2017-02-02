@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_GRAPHICS_RENDERER_HPP
+#define JIMBO_GRAPHICS_RENDERER_HPP
 
 /////////////////////////////////////////////////////////
 // Renderer.h
@@ -25,3 +27,5 @@ namespace jimbo
         void* window_;
     };
 }
+
+#endif // JIMBO_GRAPHICS_RENDERER_HPP

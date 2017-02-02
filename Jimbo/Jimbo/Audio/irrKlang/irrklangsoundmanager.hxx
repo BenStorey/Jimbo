@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_AUDIO_IRRKLANG_IRRKLANGSOUNDMANAGER_HXX
+#define JIMBO_AUDIO_IRRKLANG_IRRKLANGSOUNDMANAGER_HXX
 
 /////////////////////////////////////////////////////////
-// irrKlangSoundManager.h
+// irrklangsoundmanager.hxx
 //
 // Ben Storey
 //
@@ -10,7 +12,7 @@
 /////////////////////////////////////////////////////////
 
 #include <irrKlang.h>
-#include "audio/soundmanager.h"
+#include "audio/soundmanager.hpp"
 
 namespace jimbo
 {
@@ -27,3 +29,5 @@ namespace jimbo
         irrklang::ISoundEngine* engine_;
     };
 }
+
+#endif // JIMBO_AUDIO_IRRKLANG_IRRKLANGSOUNDMANAGER_HXX

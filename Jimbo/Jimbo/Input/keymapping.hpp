@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_INPUT_KEYMAPPING_HPP
+#define JIMBO_INPUT_KEYMAPPING_HPP
 
 /////////////////////////////////////////////////////////
 // KeyMapping.h
@@ -174,3 +176,5 @@ namespace jimbo
         KEY_LAST
     };
 }
+
+#endif // JIMBO_INPUT_KEYMAPPING_HPP

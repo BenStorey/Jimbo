@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_TEST_TESTSCENE_HPP
+#define JIMBO_TEST_TESTSCENE_HPP
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // TestScene.h
@@ -9,8 +11,12 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-#include "scene/scene.h"
-#include "util/logging.h"
+#include "scene/scene.hpp"
+#include "util/logging.hpp"
+#include "audio/soundmanager.hpp"
+#include "audio/sound.hpp"
+#include "input/inputsettings.hpp"
+#include "input/keymapping.hpp"
 
 namespace jimbo
 {
@@ -81,3 +87,5 @@ namespace jimbo
         std::unique_ptr<Sound> sound_;
     };
 }
+
+#endif // JIMBO_TEST_TESTSCENE_HPP

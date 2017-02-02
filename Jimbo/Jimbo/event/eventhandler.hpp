@@ -1,7 +1,9 @@
-#pragma once
+
+#ifndef JIMBO_EVENT_EVENTHANDLER_HPP
+#define JIMBO_EVENT_EVENTHANDLER_HPP
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// EventHandler.h
+// eventhandler.hpp
 //
 // Ben Storey
 //
@@ -42,3 +44,5 @@ namespace jimbo
     };
 
 }
+
+#endif // JIMBO_EVENT_EVENTHANDLER_HPP

@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <glad/glad.h>
-#include "test/testScene.h"
+#include "test/testScene.hpp"
 
 void jimbo::TestScene::onRender()
 {

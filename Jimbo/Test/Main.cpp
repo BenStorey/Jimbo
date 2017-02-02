@@ -13,12 +13,12 @@
 #include <boost/scoped_ptr.hpp>
 
 // Our Jimbo engine!
-#include <jimbo.h>
+#include <jimbo.hpp>
 using namespace jimbo;
 
 // Testing
-#include "test/testevents.h"
-#include "test/testscene.h"
+#include "test/testevents.hpp"
+#include "test/testscene.hpp"
 
 #ifdef _WIN32
 #include <Windows.h>

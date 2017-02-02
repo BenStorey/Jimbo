@@ -7,7 +7,7 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "input/glfw/glfwinputmanager.h"
+#include "input/glfw/glfwinputmanager.hxx"
 
 namespace jimbo
 {

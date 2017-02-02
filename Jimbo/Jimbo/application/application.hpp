@@ -1,12 +1,14 @@
-#pragma once
+
+#ifndef JIMBO_APPLICATION_HPP
+#define JIMBO_APPLICATION_HPP
 
 /////////////////////////////////////////////////////////
-// Application.h
+// application.hpp
 //
 // Ben Storey
 //
 // This is the entry point for running a Jimbo game. Controls the window and controls the scene management,
-// and manages startup settings. I don't like global singleton classes usually, and this should be the only one. 
+// and manages startup settings.
 //
 /////////////////////////////////////////////////////////
 
@@ -16,15 +18,17 @@
 #include <boost/optional/optional.hpp>
 #include <boost/noncopyable.hpp>
 
-#include "audio/soundManager.h"
-#include "scene/scene.h"
-#include "input/inputManager.h"
-#include "graphics/renderer.h"
-
-// We rely on GLFX and Glad for our application
 
 namespace jimbo
 {
+
+    // Forward declarations
+    class SoundManager;
+    class SceneManager;
+    class Scene;
+    class InputManager;
+    class Renderer;
+    class EventManager;
 
     class Application : boost::noncopyable
     {
@@ -33,8 +37,8 @@ namespace jimbo
 
         enum class AudioEngine { IRRKLANG, SILENT };
 
-        Application() noexcept;
-        ~Application() noexcept;
+        Application();
+        ~Application();
 
         void run();
 
@@ -78,3 +82,5 @@ namespace jimbo
         int windowSizeY_;
     };
 }
+
+#endif // JIMBO_APPLICATION_HPP

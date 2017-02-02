@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_UTIL_LOGGING_HPP
+#define JIMBO_UTIL_LOGGING_HPP
 
 /////////////////////////////////////////////////////////
 // Logging.h
@@ -17,6 +19,7 @@
 #endif
 
 // Helper if you want file/line numbers
+// Can eventually change this out to std::source_location, but it doesn't exist yet :(
 #define LOG(x) jimbo::Log::d(x, __FILE__, __LINE__ );
 
 namespace jimbo
@@ -45,3 +48,5 @@ namespace jimbo
     };
 
 }
+
+#endif // JIMBO_UTIL_LOGGING_HPP

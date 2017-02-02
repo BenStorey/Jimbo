@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_SCENE_SCENE_HPP
+#define JIMBO_SCENE_SCENE_HPP
 
 /////////////////////////////////////////////////////////
 // Scene.h
@@ -10,17 +12,15 @@
 /////////////////////////////////////////////////////////
 
 #include <chrono>
-#include "input/keymapping.h"
-#include "input/inputsettings.h"
-#include "input/inputlistener.h"
-#include "event/eventmanager.h"
-#include "audio/soundmanager.h"
-#include "scene/scenemanager.h"
+#include "input/inputlistener.hpp"
+#include "scenemanager.hpp"
 
 namespace jimbo
 {
-    // Circular dependency, so forward declaration
-    class SceneManager;
+    class InputSettings;
+    class EventManager;
+    class SoundManager;
+    enum class KeyMapping : unsigned int;
 
     class Scene : public InputListener
     {
@@ -73,3 +73,5 @@ namespace jimbo
         void injectDependencies(SceneManager* sc, EventManager* ev, SoundManager* so) { sceneManager_ = sc; eventManager_ = ev, soundManager_ = so; }
     };
 }
+
+#endif // JIMBO_SCENE_SCENE_HPP

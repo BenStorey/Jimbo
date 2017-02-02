@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_TEST_TESTEVENTS_HPP
+#define JIMBO_TEST_TESTEVENTS_HPP
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // TestEvents.h
@@ -10,9 +12,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <string>
-#include "event/event.h"
-#include "event/eventManager.h"
-#include "util/logging.h"
+#include "event/event.hpp"
+#include "event/eventManager.hpp"
+#include "util/logging.hpp"
 
 namespace jimbo
 {
@@ -69,3 +71,5 @@ namespace jimbo
         }
     };
 }
+
+#endif // JIMBO_TEST_TESTEVENTS_HPP

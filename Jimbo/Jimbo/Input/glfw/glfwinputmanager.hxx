@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef JIMBO_INPUT_GLFW_GLFWINPUTMANAGER_HXX
+#define JIMBO_INPUT_GLFW_GLFWINPUTMANAGER_HXX
 
 /////////////////////////////////////////////////////////
 // glfwInputManager.h
@@ -10,7 +12,7 @@
 /////////////////////////////////////////////////////////
 
 #include <glfw3.h>
-#include "input/inputmanager.h"
+#include "input/inputmanager.hpp"
 
 namespace jimbo
 {
@@ -60,3 +62,5 @@ namespace jimbo
 
     };
 }
+
+#endif // JIMBO_INPUT_GLFW_GLFWINPUTMANAGER_HXX
