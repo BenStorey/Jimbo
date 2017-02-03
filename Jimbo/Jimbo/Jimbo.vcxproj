@@ -85,7 +85,9 @@
       <AdditionalDependencies>Glad.lib;glfw3.lib;OpenAL32.lib;irrKlang.lib</AdditionalDependencies>
     </Lib>
     <PostBuildEvent>
-      <Command>xcopy /d /y "$(SolutionDir)dlls\*.*" "$(OutDir)"</Command>
+      <Command>xcopy /d /y "$(SolutionDir)dlls\*.*" "$(OutDir)"
+mkdir "$(OutDir)Assets"
+xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Make sure dll files are available</Message>
