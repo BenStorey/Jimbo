@@ -12,7 +12,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-#include <list>
+#include <vector>
 #include <functional>
 #include <algorithm>
 #include <memory>
@@ -31,8 +31,8 @@ namespace jimbo
         // them getting deleted from under them. 
         using EventPtr = std::unique_ptr<EventBase>;
 
-        // For now we're using a simple list for our list of pending events. 
-        using EventQueue = std::list<EventPtr>;
+        // For those questionning using a vector here, watch this video! https://www.youtube.com/watch?v=LrVi9LHP8Bk
+        using EventQueue = std::vector<EventPtr>;
 
     private:
         // Events can trigger other events, which could be bad if we are busy dispatching one of them
@@ -41,6 +41,10 @@ namespace jimbo
         EventQueue secondQueue_;
         EventQueue* queueInUse_;
         EventQueue* queueNotInUse_;
+
+        // A separate queue we clear after each frame, so all "send immediate" events get cleared
+        // I don't delete immediately as I'm concerned users could still accidentally reference them in the current frame
+        EventQueue dispatchedEvents_;
 
     public:
 
@@ -59,8 +63,8 @@ namespace jimbo
         // destroyed as it goes out of scope
         void immediateDispatch(EventBase* ev)
         {
-            boost::scoped_ptr<EventBase> e(ev);
-            e->dispatchEvent();
+            ev->dispatchEvent();
+            dispatchedEvents_.emplace_back(EventPtr(ev));
         }
 
         // Not only dispatch, also delete the pointer afterwards!
@@ -73,6 +77,9 @@ namespace jimbo
 
             // Clearing the list should also call the smart pointers to clear up after themselves. No deletions necessary. 
             queueNotInUse_->clear();
+
+            // Clear the ones that have been dispatched already too, should now be safe
+            dispatchedEvents_.clear();
         }
     };
 

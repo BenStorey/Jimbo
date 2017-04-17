@@ -21,23 +21,23 @@ namespace jimbo
     public:
         SilentSound() {  };
 
-        bool loadFromFile(const std::string& file) override 
+        bool loadFromFile(const std::string& file) override final
         {
             std::string str = "loading " + file; LOG(str); return true;
         }
 
-        void release()               override       { LOG("SilentSound::release()"); }
+        void release()               override final       { LOG("SilentSound::release()"); }
 
-        void play()                  override       { LOG("SilentSound::play()"); }
-        void playLoop()              override       { LOG("SilentSound::playLoop()"); }
-        void stop()                  override       { LOG("SilentSound::stop()"); }
+        void play()                  override final       { LOG("SilentSound::play()"); }
+        void playLoop()              override final       { LOG("SilentSound::playLoop()"); }
+        void stop()                  override final       { LOG("SilentSound::stop()"); }
 
-        void setPaused(bool)         override       { LOG("SilentSound::setPaused()"); }
-        bool isPaused()              const override { LOG("SilentSound::isPaused()"); return true; }
-        bool isPlaying()             const override { LOG("SilentSound::isPlaying()"); return true; }
+        void setPaused(bool)         override final       { LOG("SilentSound::setPaused()"); }
+        bool isPaused()              const override final { LOG("SilentSound::isPaused()"); return true; }
+        bool isPlaying()             const override final { LOG("SilentSound::isPlaying()"); return true; }
 
-        void setVolume(float volume) override       { LOG("SilentSound::setVolume()"); }
-        float getVolume()            const override { LOG("SilentSound::getVolume()"); return 1.0f; }
+        void setVolume(float volume) override final       { LOG("SilentSound::setVolume()"); }
+        float getVolume()            const override final { LOG("SilentSound::getVolume()"); return 1.0f; }
     };
 }
 

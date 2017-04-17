@@ -19,11 +19,11 @@ namespace jimbo
     class irrKlangSoundManager : public SoundManager
     {
     public:
-        bool initialise() override;
-        void shutdown() override;
-        void stopAllSounds() override;
+        bool initialise() override final;
+        void shutdown() override final;
+        void stopAllSounds() override final;
 
-        std::unique_ptr<Sound> createSound() override;
+        std::unique_ptr<Sound> createSound() override final;
 
     private:
         irrklang::ISoundEngine* engine_;

@@ -11,20 +11,22 @@
 //
 /////////////////////////////////////////////////////////
 
+#include <cstdint>
+
 namespace jimbo
 {
     // Just provides a nice interface. Probably not the most efficient implementation but hopefully the compiler will mostly
     // optimise it away. I'm prioritising a nice user experience over efficiency at the moment!
     class KeyModifier;
     class KeyState;
-    enum class KeyMapping : unsigned int;
+    enum class KeyMapping : std::uint32_t;
 
     class KeyModifier
     {
     public:
 
         // Some static versions to make life a bit easier
-        static KeyModifier ShiftDown, ControlDown, SuperDown, AltDown, NoModifier;
+        static const KeyModifier ShiftDown, ControlDown, SuperDown, AltDown, NoModifier;
 
         KeyModifier(int mod) : mod_(mod) {};
 
@@ -41,7 +43,7 @@ namespace jimbo
             SUPER    = 8
         };
 
-        const unsigned int mod_;
+        const std::uint32_t mod_;
 
         // Comparison operator, we want to be able to test for equality
         bool KeyModifier::operator==(const KeyModifier& other) const { return mod_ == other.mod_; }
@@ -49,7 +51,7 @@ namespace jimbo
     };
 
     // Values Taken from GLFW
-    enum class KeyMapping : unsigned int
+    enum class KeyMapping : std::uint32_t
     {
         
         KEY_SPACE =             32,

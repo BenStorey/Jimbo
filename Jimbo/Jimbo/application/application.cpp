@@ -24,23 +24,32 @@
 #include "audio/irrKlang/irrklangsoundmanager.hxx"
 #include "audio/silent/silentsoundmanager.hxx"
 #include "input/glfw/glfwinputmanager.hxx"
+#include "resource/resourcemanager.hpp"
 
 jimbo::Application::Application() 
 {
     // Defaults
     windowName_ = "Jimbo Project";
     audioEngine_ = AudioEngine::IRRKLANG;
+    serviceLocator_.reset(new ServiceLocator);
 
-    soundManager_ = nullptr;
-    eventManager_ = nullptr;
-    sceneManager_ = nullptr;
-    inputManager_ = nullptr;
-    renderer_      = nullptr;
+    // We set this right away, as then resource related setup calls can be passed along to the resource manager
+    serviceLocator_->setService(new ResourceManager);
 }
 
 jimbo::Application::~Application() 
 {
 
+}
+
+void jimbo::Application::setResourceThreadPoolSize(int numThreads)
+{
+    serviceLocator_->resourceManager()->setThreadPoolSize(numThreads);
+}
+
+void jimbo::Application::registerResource(ResourceID id, ResourceLoader * loader)
+{
+    serviceLocator_->resourceManager()->registerResource(id, loader);
 }
 
 void jimbo::Application::initialise()
@@ -49,19 +58,22 @@ void jimbo::Application::initialise()
     switch (audioEngine_)
     {
     case AudioEngine::IRRKLANG:
-        soundManager_.reset(new irrKlangSoundManager); break;
+        serviceLocator_->setService(new irrKlangSoundManager); break;
     case AudioEngine::SILENT:
-        soundManager_.reset(new SilentSoundManager); break;
+        serviceLocator_->setService(new SilentSoundManager); break;
     }
 
     LOG("Initialising Sound Manager");
-    if (!soundManager_->initialise())
+    if (!serviceLocator_->soundManager()->initialise())
     {
         // We couldn't initialise the given one. Therefore, use the debug one (that plays no sound)
-        soundManager_.reset(new SilentSoundManager);
+        serviceLocator_->setService(new SilentSoundManager);
     }
 
-    eventManager_.reset(new EventManager);
+    LOG("Initialising Resource Manager")
+    serviceLocator_->resourceManager()->initialise();
+
+    serviceLocator_->setService(new EventManager);
 
     if (!glfwInit())
     {
@@ -71,6 +83,7 @@ void jimbo::Application::initialise()
 
     initialised_ = true;
 }
+
 
 void jimbo::Application::setupWindow()
 {
@@ -104,9 +117,9 @@ void jimbo::Application::setupWindow()
     glViewport(0, 0, width, height);
 
     // Can now create our other input/scene managers that the window is available
-    renderer_.reset(new Renderer(window));
-    inputManager_.reset(new glfwInputManager(window));
-    sceneManager_.reset(new SceneManager(renderer_.get(), inputManager_.get(), eventManager_.get(), soundManager_.get()));
+    serviceLocator_->setService(new Renderer(window));
+    serviceLocator_->setService(new glfwInputManager(window));
+    serviceLocator_->setService(new SceneManager(serviceLocator_.get()));
 }
 
 void jimbo::Application::run()
@@ -117,17 +130,17 @@ void jimbo::Application::run()
     setupWindow();
 
     // Ensure everything is initialised before running
-    inputManager_->initialise();
+    serviceLocator_->inputManager()->initialise();
 
     // Push the first scene of the world. Scene manager will take ownership of the pointer from here
-    sceneManager_->pushScene(startupScene_);
+    serviceLocator_->sceneManager()->pushScene(std::move(startupScene_));
 
     // Main game loop
-    sceneManager_->runGameLoop();
+    serviceLocator_->sceneManager()->runGameLoop();
 
     LOG("Shutting down Application");
-    soundManager_->shutdown();
-    inputManager_->shutdown();
+    serviceLocator_->soundManager()->shutdown();
+    serviceLocator_->inputManager()->shutdown();
 
     glfwTerminate();
 }

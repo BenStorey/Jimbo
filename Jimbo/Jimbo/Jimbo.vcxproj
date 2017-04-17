@@ -75,13 +75,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Jimbo\;$(SolutionDir)Glad\include;$(SolutionDir)Libraries\glm-0.9.8.4;$(SolutionDir)Libraries\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Jimbo\;$(SolutionDir)Glad\include;$(SolutionDir)Libraries\glm-0.9.8.4;C:\Users\Ben\Source\Repos\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WIN32_WINNT=0x0501;WIN32_LEAN_AND_MEAN=1</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>-D _WIN32_WINNT=0x0501 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\irrKlang-1.5.0\lib;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\chrono\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\thread\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\regex\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\date_time\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\system\build\msvc-14.0\debug\link-static\threading-multi;$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\irrKlang-1.5.0\lib;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Glad.lib;glfw3.lib;OpenAL32.lib;irrKlang.lib</AdditionalDependencies>
     </Lib>
     <PostBuildEvent>
@@ -127,6 +130,8 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="application\servicelocator.hpp" />
+    <ClInclude Include="audio\jukebox.hpp" />
     <ClInclude Include="Audio\Silent\silentsound.hxx" />
     <ClInclude Include="Audio\irrKlang\irrklangsound.hxx" />
     <ClInclude Include="Audio\Silent\silentsoundmanager.hxx" />
@@ -134,6 +139,18 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="Audio\sound.hpp" />
     <ClInclude Include="Audio\soundmanager.hpp" />
     <ClInclude Include="application\application.hpp" />
+    <ClInclude Include="resource\loader\resourcefileloader.hpp" />
+    <ClInclude Include="resource\resource.hpp" />
+    <ClInclude Include="resource\resourceid.hpp" />
+    <ClInclude Include="resource\resourceloader.hpp" />
+    <ClInclude Include="resource\resourcemanager.hpp" />
+    <ClInclude Include="resource\thread\resourcethreadpool.hxx" />
+    <ClInclude Include="resource\thread\threadpool.hxx" />
+    <ClInclude Include="resource\thread\threadsafequeue.hxx" />
+    <ClInclude Include="test\component\resourceid.hxx" />
+    <ClInclude Include="test\testengine.hpp" />
+    <ClInclude Include="test\component\proxy.hxx" />
+    <ClInclude Include="util\buffer.hxx" />
     <ClInclude Include="util\logging.hpp" />
     <ClInclude Include="Graphics\renderer.hpp" />
     <ClInclude Include="Input\glfw\glfwinputmanager.hxx" />
@@ -146,11 +163,14 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="Event\eventmanager.hpp" />
     <ClInclude Include="Scene\scene.hpp" />
     <ClInclude Include="Scene\scenemanager.hpp" />
-    <ClInclude Include="Test\testevents.hpp" />
+    <ClInclude Include="test\component\event.hxx" />
     <ClInclude Include="Jimbo.hpp" />
     <ClInclude Include="Test\testscene.hpp" />
+    <ClInclude Include="util\proxy.hpp" />
+    <ClInclude Include="util\stringhash.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="application\servicelocator.cpp" />
     <ClCompile Include="Audio\irrKlang\irrKlangSound.cpp" />
     <ClCompile Include="Audio\irrKlang\irrKlangSoundManager.cpp" />
     <ClCompile Include="application\application.cpp" />
@@ -158,6 +178,10 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClCompile Include="Input\glfw\glfwInputManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\KeyMapping.cpp" />
+    <ClCompile Include="resource\loader\resourcefileloader.cpp" />
+    <ClCompile Include="resource\resourcemanager.cpp" />
+    <ClCompile Include="resource\thread\resourcethreadpool.cpp" />
+    <ClCompile Include="scene\scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Test\TestScene.cpp" />
   </ItemGroup>

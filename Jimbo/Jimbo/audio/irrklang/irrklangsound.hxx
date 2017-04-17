@@ -22,19 +22,19 @@ namespace jimbo
         irrKlangSound(irrklang::ISoundEngine* engine) : engine_(engine), source_(nullptr), sound_(nullptr) { };
         ~irrKlangSound();
 
-        bool loadFromFile(const std::string& file) override;
-        void release() override;
+        bool loadFromFile(const std::string& file) override final;
+        void release() override final;
 
-        void play() override;
-        void playLoop() override;
-        void stop() override;
+        void play() override final;
+        void playLoop() override final;
+        void stop() override final;
 
-        void setPaused(bool) override;
-        bool isPaused() const override;
-        bool isPlaying() const override;
+        void setPaused(bool) override final;
+        bool isPaused() const override final;
+        bool isPlaying() const override final;
 
-        void setVolume(float volume) override;
-        float getVolume() const override;
+        void setVolume(float volume) override final;
+        float getVolume() const override final;
 
     private:
         irrklang::ISoundEngine* engine_;

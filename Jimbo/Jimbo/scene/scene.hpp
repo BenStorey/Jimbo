@@ -12,21 +12,30 @@
 /////////////////////////////////////////////////////////
 
 #include <chrono>
+#include <cstdint>
 #include "input/inputlistener.hpp"
-#include "scenemanager.hpp"
+#include "application/servicelocator.hpp"
 
 namespace jimbo
 {
     class InputSettings;
+    enum class KeyMapping : std::uint32_t;
+
+    class SceneManager;
     class EventManager;
-    class SoundManager;
-    enum class KeyMapping : unsigned int;
+    class InputManager;
+
+    class ResourceID;
 
     class Scene : public InputListener
     {
     public:
 
+        Scene() {}
         virtual ~Scene() {}
+
+        // TODO get time since startup
+        // TODO get frame delta too
 
         // Initialise and Shutdown allow the scene to load/unload files as necessary
         virtual bool onInitialise(std::chrono::milliseconds) = 0;
@@ -50,27 +59,30 @@ namespace jimbo
 
         virtual void onWindowCloseEvent() override = 0;
 
+        // I spent a lot of time trying to make this NOT public, as really no clients
+        // have any business calling this. But life ends up being quite a lot simpler this way. 
+        void setServiceLocator(ServiceLocator const* serviceLocator)
+        {
+            serviceLocator_ = serviceLocator;
+        }
+
     protected:
 
         // Ends the scene from the next frame
-        void endScene()              { sceneManager_->popScene(); }
-        void pushScene(Scene* scene) { sceneManager_->pushScene(scene); }
-        void quitApplication()       { sceneManager_->quit(); }
+        void endScene();
+        void pushScene(std::unique_ptr<Scene> scene);
+        void quitApplication();
 
-        EventManager* eventManager() const { return eventManager_; }
-        SoundManager* soundManager() const { return soundManager_; }
-        SceneManager* sceneManager() const { return sceneManager_; }
+        //std::shared_ptr<EventManager> eventManager() const { return serviceLocator_->eventManager(); }
+        //std::shared_ptr<SoundManager> soundManager() const { return serviceLocator_->soundManager(); }
+        //std::shared_ptr<SceneManager> sceneManager() const { return serviceLocator_->sceneManager(); }
+
+        // Helper functions, give them a cleaner API
+        void loadResource(ResourceID id);
 
     private:
-        EventManager* eventManager_;
-        SoundManager* soundManager_;
-        SceneManager* sceneManager_;
-
-        // I like being able to call eventManager() or soundManager() as an API without them being singletons, which means
-        // each scene needs to be able to find them from somewhere. The SceneManager can set these up, but unfortunately
-        // that means they need access to Scene's private data. Hence the friend declaration..
-        friend class SceneManager;
-        void injectDependencies(SceneManager* sc, EventManager* ev, SoundManager* so) { sceneManager_ = sc; eventManager_ = ev, soundManager_ = so; }
+        // Pointer to const, so we can't change the serviceLocator from here
+        ServiceLocator const* serviceLocator_;
     };
 }
 

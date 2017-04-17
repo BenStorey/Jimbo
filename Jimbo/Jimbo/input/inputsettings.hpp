@@ -14,12 +14,14 @@
 
 #include <unordered_map>
 #include <boost/optional/optional.hpp>
+#include <cstdint>
+#include <chrono>
 
 #include "input/keymapping.hpp"
 
 namespace jimbo
 {
-    enum class KeyMapping : unsigned int;
+    enum class KeyMapping : std::uint32_t;
 
     class InputSettings
     {
@@ -31,7 +33,7 @@ namespace jimbo
         
     public:
 
-        using Action = unsigned int;
+        using Action = std::uint32_t;
 
         void addKeyMapping(KeyMapping key, Action action)
         {
@@ -88,7 +90,7 @@ namespace jimbo
         {
             std::size_t operator()(const Key& k) const
             {
-                return k.mod_.mod_ << 16 | static_cast<unsigned int>(k.key_);
+                return k.mod_.mod_ << 16 | static_cast<std::uint32_t>(k.key_);
             }
         };
 

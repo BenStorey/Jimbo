@@ -12,6 +12,8 @@
 #include "scene/scene.hpp"
 #include "graphics/renderer.hpp"
 #include "input/inputmanager.hpp"
+#include "resource/resourcemanager.hpp"
+
 
 void jimbo::SceneManager::runGameLoop()
 {
@@ -27,15 +29,18 @@ void jimbo::SceneManager::runGameLoop()
         auto currentScene = sceneStack_.top().get();
 
         // Update input
-        inputManager_->update();
+        serviceLocator_->inputManager()->update();
+
+        // Let the resource manager handle any changes
+        serviceLocator_->resourceManager()->update();
 
         // Update our scene logic based on elapsed time
         currentScene->onUpdate(elapsedTime);
 
         // Render the world
-        renderer_->startRenderFrame();
+        serviceLocator_->renderer()->startRenderFrame();
         currentScene->onRender();
-        renderer_->endRenderFrame();
+        serviceLocator_->renderer()->endRenderFrame();
 
         // Check we haven't finished
         checkEndApplication();
@@ -50,7 +55,7 @@ void jimbo::SceneManager::checkNextScene()
 {
     while (popScene_ > 0)
     {
-        inputManager_->removeListener(sceneStack_.top().get());
+        serviceLocator_->inputManager()->removeListener(sceneStack_.top().get());
 
         sceneStack_.top()->onShutdown();
         sceneStack_.pop();
@@ -59,16 +64,16 @@ void jimbo::SceneManager::checkNextScene()
 
     if (nextScene_)
     {
-        nextScene_->injectDependencies(this, eventManager_, soundManager_);
+        nextScene_->setServiceLocator(serviceLocator_);
         nextScene_->onInitialise(getElapsedTime());
 
         if (!sceneStack_.empty())
-            inputManager_->removeListener(sceneStack_.top().get());
+            serviceLocator_->inputManager()->removeListener(sceneStack_.top().get());
 
         // For now, only the topmost scene will receive input actions
-        inputManager_->addListener(nextScene_.get());
-        inputManager_->resetInputSettings();
-        nextScene_->onSetupInputMaps(inputManager_->getInputSettingsToEdit());
+        serviceLocator_->inputManager()->addListener(nextScene_.get());
+        serviceLocator_->inputManager()->resetInputSettings();
+        nextScene_->onSetupInputMaps(serviceLocator_->inputManager()->getInputSettingsToEdit());
 
         // Needs to be moved in, once its removed from the stack it will be destroyed
         sceneStack_.push(std::move(nextScene_));

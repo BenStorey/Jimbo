@@ -20,18 +20,18 @@ namespace jimbo
     class SilentSoundManager : public SoundManager
     {
     public:
-        bool initialise() override
+        bool initialise() override final
         {
             LOG("Initialising Debug Sound");
             return true;
         }
 
-        void shutdown() override
+        void shutdown() override final
         {
             LOG("Shutting down Debug Sound");
         }
 
-        void stopAllSounds() override
+        void stopAllSounds() override final
         {
             LOG("Stopping all sounds");
         }

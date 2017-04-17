@@ -17,14 +17,13 @@
 #include <boost/noncopyable.hpp>
 #include "util/logging.hpp"
 
+#include "scene/scene.hpp"
+
 namespace jimbo
 {
     // Forward declaration for a scene, since both include each other
     class Scene;
-    class EventManager;
-    class SoundManager;
-    class InputManager;
-    class Renderer;
+    class ServiceLocator;
 
     class SceneManager : boost::noncopyable
     {
@@ -33,15 +32,16 @@ namespace jimbo
         // Use a steady clock for timing, as it won't get messed up if the system clock changes
         using Clock = std::chrono::steady_clock;
 
-        // The reason I take pointers rather than const ref, is because I need Scene's to be able to be constructed without them being available by the user
-        // as they get injected later (without needing to be deleted, since they are owned by the Application class)
-        SceneManager(Renderer* r, InputManager* im, EventManager* em, SoundManager* sm) 
-            : renderer_(r), inputManager_(im), eventManager_(em), soundManager_(sm), gameEnding_(false), popScene_(0) {};
+        SceneManager(ServiceLocator const* serviceLocator) : serviceLocator_(serviceLocator), gameEnding_(false), popScene_(0) {};
 
         bool hasActiveScene() const { return !sceneStack_.empty(); }
 
-        void pushScene(Scene* newScene) { nextScene_.reset(newScene); }
-        void popScene()                 { ++popScene_; }
+        void pushScene(std::unique_ptr<Scene> newScene)
+        { 
+            nextScene_ = std::move(newScene);
+        }
+
+        void popScene() { ++popScene_; }
 
         // Normally the scene manager shouldn't be visible to users, so it's fine to leave this in public I think
         // Preferable to making Application a friend in this case
@@ -71,17 +71,13 @@ namespace jimbo
 
         // How many scenes to pop at the end of this frame
         int popScene_;
-
         bool gameEnding_;
 
         // The start time for our game loop
         std::chrono::time_point<Clock> startTime_;
 
-        // Our managers..
-        InputManager* inputManager_;
-        EventManager* eventManager_;
-        SoundManager* soundManager_;
-        Renderer*     renderer_;
+        // Our service. Uses a pointer to const
+        ServiceLocator const* serviceLocator_;
     };
 }
 

@@ -13,8 +13,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-#include <list>
+#include <vector>
 #include <functional>
+#include <boost/range/algorithm_ext/erase.hpp>
 #include "event/eventhandler.hpp"
 
 namespace jimbo
@@ -30,7 +31,7 @@ namespace jimbo
     // Defines to make code a little clearer and so we can easily change the signatures if needbe in one place
     using EventHandlerBasePtr = EventHandlerBase*;
     template<class T> using CallbackFn   = std::function<void(const T&)>;
-    template<class T> using CallbackList = std::list< std::pair<EventHandlerBasePtr, CallbackFn<T> >>;
+    template<class T> using CallbackVec  = std::vector< std::pair<EventHandlerBasePtr, CallbackFn<T> >>;
 
     template <class T>
     class Event : public EventBase
@@ -39,12 +40,16 @@ namespace jimbo
         
         static void AddHandler(EventHandlerBasePtr handler, CallbackFn<T> fn)
         {
-            handlers.emplace_back(std::make_pair(handler, fn));
+            // If it's already in the vector, we don't need to add it again
+            auto it = std::find_if(handlers.cbegin(), handlers.cend(), [&handler](auto i) {return i.first == handler; });
+
+            if (it == handlers.cend())
+                handlers.emplace_back(std::make_pair(handler, fn));
         }
 
         static void RemoveHandler(EventHandlerBasePtr handler)
         {
-            handlers.remove_if([&handler](auto i) {return i.first == handler; });
+            boost::remove_erase_if(handlers, [&handler](auto i) {return i.first == handler; });
         }
 
         virtual void dispatchEvent()
@@ -55,11 +60,11 @@ namespace jimbo
         }
         
     private:
-        static CallbackList<T> handlers;
+        static CallbackVec<T> handlers;
     };
 
     // Static handlers need to be defined
-    template <class T> CallbackList<T> Event<T>::handlers;
+    template <class T> CallbackVec<T> Event<T>::handlers;
 }
 
 #endif // JIMBO_EVENT_EVENT_HPP

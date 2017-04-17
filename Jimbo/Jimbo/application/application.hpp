@@ -18,17 +18,25 @@
 #include <boost/optional/optional.hpp>
 #include <boost/noncopyable.hpp>
 
+#include "application/servicelocator.hpp"
 
 namespace jimbo
 {
 
-    // Forward declarations
-    class SoundManager;
-    class SceneManager;
     class Scene;
+    class ServiceLocator;
+
+    // services
+    class SoundManager;
     class InputManager;
-    class Renderer;
     class EventManager;
+    class SceneManager;
+    class ResourceManager;
+    class Renderer;
+
+    // resources
+    class ResourceID;
+    class ResourceLoader;
 
     class Application : boost::noncopyable
     {
@@ -50,8 +58,21 @@ namespace jimbo
         // Audio choices
         void setAudioEngine(AudioEngine ae)         { audioEngine_ = ae; }
 
-        // Initial scene
-        void setStartupScene(Scene* scene)          { startupScene_ = scene; }
+        // This takes a unique pointer at the moment so that the user knows
+        // they are losing ownership
+        void setStartupScene(std::unique_ptr<Scene> startupScene)   
+        { 
+            startupScene_ = std::move(startupScene);
+        }
+
+        void setStartupScene(Scene* startupScene)
+        {
+            startupScene_.reset(startupScene);
+        }
+
+        // Resource related. We just pass through to the manager directly, but lets the user set these before starting the app
+        void setResourceThreadPoolSize(int numThreads);
+        void registerResource(ResourceID id, ResourceLoader* loader); 
 
         // Use optional for framerates, as you can pass an empty to turn it off
         void capFrameRate(boost::optional<int> fps) { this->fps_ = fps; }
@@ -63,15 +84,15 @@ namespace jimbo
         void initialise();
         void setupWindow();
 
-        Scene* startupScene_;
+        // On startup ownership will be transferred to the scene manager
+        std::unique_ptr<Scene> startupScene_;
 
         // Use unique pointer because we want ownership of it. 
         AudioEngine audioEngine_;
-        std::unique_ptr<SoundManager> soundManager_;
-        std::unique_ptr<SceneManager> sceneManager_;
-        std::unique_ptr<EventManager> eventManager_;
-        std::unique_ptr<InputManager> inputManager_;
-        std::unique_ptr<Renderer>     renderer_;
+
+        // Our service locator contains pointers to the above manager classes. The raw
+        // get pointer can then be passed around to others that need access to it. 
+        std::unique_ptr<ServiceLocator> serviceLocator_;
 
         bool initialised_;
         bool fullScreen_;

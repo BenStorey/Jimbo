@@ -66,9 +66,6 @@
     <ClInclude Include="Test\testscene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test\testevents.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -79,6 +76,57 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Jimbo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourcemanager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourceid.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\stringhash.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application\servicelocator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourceloader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\loader\resourcefileloader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\thread\threadsafequeue.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\buffer.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\jukebox.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\proxy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\testengine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\component\proxy.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\component\event.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\component\resourceid.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\thread\threadpool.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\thread\resourcethreadpool.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -108,6 +156,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="application\application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application\servicelocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\loader\resourcefileloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\thread\resourcethreadpool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\resourcemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

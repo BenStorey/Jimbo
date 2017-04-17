@@ -22,15 +22,15 @@ namespace jimbo
         glfwInputManager(GLFWwindow* window) : window_(window) {}
         ~glfwInputManager() {}
 
-        void initialise() override
+        void initialise() override final
         {
             instance_ = this;
             glfwSetKeyCallback(window_, KeyCallback);
             glfwSetWindowCloseCallback(window_, WindowCloseCallback);
         }
 
-        void shutdown() override {}
-        void update()   override { glfwPollEvents(); }
+        void shutdown() override final {}
+        void update()   override final { glfwPollEvents(); }
 
     private:
 

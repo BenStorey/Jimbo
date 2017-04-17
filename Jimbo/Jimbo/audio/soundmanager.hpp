@@ -3,7 +3,7 @@
 #define JIMBO_AUDIO_SOUNDMANAGER_HPP
 
 /////////////////////////////////////////////////////////
-// SoundManager.h
+// soundManager.hpp
 //
 // Ben Storey
 //
