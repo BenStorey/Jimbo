@@ -25,13 +25,8 @@ namespace jimbo
     {
     public:
 
-        Resource(ResourceID id) : id_(id) { LOG("New resource created with no data"); }
-        Resource(ResourceID id, Buffer&& data) : id_(id), buffer_(std::move(data)) 
-        {
-            std::string toLog = "New resource created with data of size " + std::to_string(data.size());
-            LOG(toLog);
-        }
-        ~Resource() { LOG("resource being destroyed"); }
+        Resource(ResourceID id) : id_(id) {}
+        Resource(ResourceID id, Buffer&& data) : id_(id), buffer_(std::move(data)) {}
 
         // Swap trick to force the buffer to be released
         void release() 
@@ -39,10 +34,11 @@ namespace jimbo
             buffer_ = Buffer(0);
         }
 
-        const Buffer& data() const
-        {
-            return buffer_;
-        }
+        // should return to the front of the memory location probably, not the vec..
+        //const Buffer& data() const
+        //{
+        //   return buffer_;
+        //}
 
         int sizeInBytes() const 
         {

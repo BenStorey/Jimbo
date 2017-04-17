@@ -49,6 +49,8 @@ namespace jimbo
         // Instantiate our thread pool
         void initialise();
 
+        void shutdown();
+
         // This is where the magic shall happen
         void update();
 

@@ -141,6 +141,7 @@ void jimbo::Application::run()
     LOG("Shutting down Application");
     serviceLocator_->soundManager()->shutdown();
     serviceLocator_->inputManager()->shutdown();
+    serviceLocator_->resourceManager()->shutdown();
 
     glfwTerminate();
 }

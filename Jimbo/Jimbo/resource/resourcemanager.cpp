@@ -30,6 +30,11 @@ void jimbo::ResourceManager::initialise()
     threadPool_.initialise(numThreads_);
 }
 
+void jimbo::ResourceManager::shutdown()
+{
+    threadPool_.shutdown();
+}
+
 void jimbo::ResourceManager::update()
 {
     std::unique_ptr<Resource> result;
@@ -38,9 +43,10 @@ void jimbo::ResourceManager::update()
     // then put that into our map of loaded resources
     while (result = threadPool_.getLoadedResource())
     {
-        loadedResources_[result->resourceID()] = std::move(result);
-        std::string logMessage = ("A resource was loaded: ") + result->resourceID().str() + " with size in bytes " + std::to_string(result->sizeInBytes());
+        std::string logMessage = ("A resource was loaded [") + result->resourceID().str() + "] with size in bytes " + std::to_string(result->sizeInBytes());
         LOG(logMessage);
+
+        loadedResources_[result->resourceID()] = std::move(result);
     }
 
     // More magic?

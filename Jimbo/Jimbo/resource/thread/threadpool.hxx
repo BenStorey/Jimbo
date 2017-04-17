@@ -39,10 +39,11 @@ namespace jimbo
 
             for (int i = 0; i < numThreads; i++)
             {
+                LOG("Creating Thread(" + std::to_string(i + 1) + ")");
                 auto thread = boost::bind(&boost::asio::io_service::run, &service_);
                 group_.add_thread(new boost::thread(thread));
             }
-
+            
             running_ = true;
         }
 
@@ -51,8 +52,8 @@ namespace jimbo
         {
             if (!running_) return;
 
-            group_.join_all();
             service_.stop();
+            group_.join_all();
 
             running_ = false;
         }
