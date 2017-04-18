@@ -139,6 +139,8 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="Audio\sound.hpp" />
     <ClInclude Include="Audio\soundmanager.hpp" />
     <ClInclude Include="application\application.hpp" />
+    <ClInclude Include="resource\event\resourceloadedevent.hxx" />
+    <ClInclude Include="resource\event\resourcereleasedevent.hxx" />
     <ClInclude Include="resource\loader\resourcefileloader.hpp" />
     <ClInclude Include="resource\resource.hpp" />
     <ClInclude Include="resource\resourceid.hpp" />
@@ -148,6 +150,7 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="resource\thread\threadpool.hxx" />
     <ClInclude Include="resource\thread\threadsafequeue.hxx" />
     <ClInclude Include="test\component\resourceid.hxx" />
+    <ClInclude Include="test\component\resourceloader.hxx" />
     <ClInclude Include="test\testengine.hpp" />
     <ClInclude Include="test\component\proxy.hxx" />
     <ClInclude Include="util\buffer.hxx" />
@@ -165,7 +168,7 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="Scene\scenemanager.hpp" />
     <ClInclude Include="test\component\event.hxx" />
     <ClInclude Include="Jimbo.hpp" />
-    <ClInclude Include="Test\testscene.hpp" />
+    <ClInclude Include="Test\testscene.hxx" />
     <ClInclude Include="util\proxy.hpp" />
     <ClInclude Include="util\stringhash.hxx" />
   </ItemGroup>

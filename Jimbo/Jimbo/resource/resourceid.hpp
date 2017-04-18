@@ -40,10 +40,6 @@ namespace jimbo
 #ifdef _DEBUG
 
         std::string resourceString;
-        ResourceID(std::string s) : resourceString(s)
-        {
-            id_ = generateId(s.c_str());
-        }
 
         ResourceID(const char* c) : resourceString(c)
         {

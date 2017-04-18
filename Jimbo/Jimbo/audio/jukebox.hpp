@@ -23,10 +23,10 @@ namespace jimbo
     public:
 
         // service locator?
-        Jukebox();
-
+        Jukebox() {}
+    
         // This will also remove what was already there..
-        void setPlaylist(std::vector<ResourceID> ids);
+        void setPlaylist(std::vector<ResourceID> ids) { ids_ = ids; stop(); }
 
         void play();
         void pause();
@@ -42,7 +42,7 @@ namespace jimbo
 
     private:
 
-
+        std::vector<ResourceID> ids_;
     };
 }
 

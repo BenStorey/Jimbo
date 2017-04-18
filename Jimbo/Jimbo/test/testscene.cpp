@@ -8,9 +8,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <glad/glad.h>
-#include "test/testScene.hpp"
+#include "test/testScene.hxx"
 
-void jimbo::TestScene::onRender()
+void jimbo::test::TestScene::onRender()
 {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);

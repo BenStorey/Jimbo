@@ -15,9 +15,12 @@
 #include <boost/format.hpp>
 #include "util/logging.hpp"
 
+// Include everything test related
 #include "test/component/event.hxx"
 #include "test/component/proxy.hxx"
 #include "test/component/resourceid.hxx"
+#include "test/component/resourceloader.hxx"
+#include "test/testscene.hxx"
 
 namespace jimbo
 {

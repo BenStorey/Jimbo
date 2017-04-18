@@ -21,8 +21,6 @@ namespace jimbo
     {
     public:
 
-        // A sound should release its resources when destroyed, so ensuring
-        // its called in the destructor allows us to use unique_ptr semantics for them
         virtual ~Sound() {}
 
         // Loading and releasing the file from memory

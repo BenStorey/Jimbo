@@ -16,9 +16,10 @@
 void jimbo::ResourceManager::loadResource(ResourceID id)
 {
     // If we can't find a loader for it then log and do nothing
+    // In production builds this should get optimised away
     if (loaderMap_.find(id) == loaderMap_.end())
     {
-        LOG("No loader available for resource: " + id.str());
+        LOG("No loader available for resource [" + id.str() + "]");
         return;
     }
 
@@ -48,6 +49,4 @@ void jimbo::ResourceManager::update()
 
         loadedResources_[result->resourceID()] = std::move(result);
     }
-
-    // More magic?
 }

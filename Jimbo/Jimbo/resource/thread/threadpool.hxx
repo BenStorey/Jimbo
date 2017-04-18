@@ -17,7 +17,6 @@
 #include <boost/thread.hpp>
 #include <boost/noncopyable.hpp>
 #include <memory>
-#include <functional>
 
 #include "util/logging.hpp"
 
@@ -29,7 +28,7 @@ namespace jimbo
     public:
 
         ThreadPool(): running_(false) {}
-        ~ThreadPool() { shutdown(); }
+        virtual ~ThreadPool() { shutdown(); }
 
         void initialise(int numThreads)
         {

@@ -45,8 +45,9 @@ namespace jimbo
         virtual void onUpdate(std::chrono::milliseconds) = 0;
         virtual void onRender() = 0;
 
-        // onLoseFocus() is called to let us know we aren't the current scene anymore
-        virtual void onLoseFocus() = 0;
+        // onNoLongerActiveScene() is called to let us know we aren't the current scene anymore
+        // rename this?
+        // virtual void onNoLongerActiveScene() = 0;
 
         // Just to help keep code clean, this could be done in init() too to be fair
         virtual void onSetupInputMaps(InputSettings& map) = 0;

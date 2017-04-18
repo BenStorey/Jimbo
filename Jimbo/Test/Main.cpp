@@ -20,8 +20,7 @@ using namespace jimbo;
 
 // Testing
 #include "test/testengine.hpp"
-#include "test/testscene.hpp"
-//#include "resource/resourcemanager.hpp"
+
 
 #ifdef _WIN32
 
@@ -41,18 +40,19 @@ int main()
 
     // Start demo application using our example TestScene
     boost::scoped_ptr<Application> app (new Application);
+
     app->setFullScreen(false);
     app->setWindowSize(800, 600);
     app->setWindowName("Testing Engine");
     app->setAudioEngine(Application::AudioEngine::IRRKLANG);
-    app->setStartupScene(new TestScene);
+    app->setStartupScene(new test::TestScene);
     app->capFrameRate(60);
 
     // We can register all of our resources in advance
     app->setResourceThreadPoolSize(4);
 
     // Should register resources here under normal circumstances
-    app->registerResource(RID("testSound"), new ResourceFileLoader("../Assets/Success.wav"));
+    app->registerResource(RID("testSound"), new test::ResourceLoaderDelay(new ResourceFileLoader("../Assets/Success.wav"), std::chrono::milliseconds(5000)));
 
     // This should probably be registerStreamableResource..
     app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
