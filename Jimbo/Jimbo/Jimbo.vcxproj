@@ -75,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Jimbo\;$(SolutionDir)Glad\include;$(SolutionDir)Libraries\glm-0.9.8.4;C:\Users\Ben\Source\Repos\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\cpptoml;$(SolutionDir)Jimbo\;$(SolutionDir)Glad\include;$(SolutionDir)Libraries\glm-0.9.8.4;C:\Users\Ben\Source\Repos\boost_1_63_0;$(SolutionDir)Libraries\irrKlang-1.5.0\include;$(SolutionDir)Libraries\openal-soft-1.17.2\include;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WIN32_WINNT=0x0501;WIN32_LEAN_AND_MEAN=1</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>-D _WIN32_WINNT=0x0501 %(AdditionalOptions)</AdditionalOptions>
@@ -130,6 +130,7 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="application\config.hpp" />
     <ClInclude Include="application\servicelocator.hpp" />
     <ClInclude Include="audio\jukebox.hpp" />
     <ClInclude Include="Audio\Silent\silentsound.hxx" />
@@ -139,10 +140,15 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="Audio\sound.hpp" />
     <ClInclude Include="Audio\soundmanager.hpp" />
     <ClInclude Include="application\application.hpp" />
+    <ClInclude Include="log\event.hxx" />
+    <ClInclude Include="log\logging.hpp" />
     <ClInclude Include="resource\event\resourceloadedevent.hxx" />
     <ClInclude Include="resource\event\resourcereleasedevent.hxx" />
-    <ClInclude Include="resource\loader\resourcefileloader.hpp" />
+    <ClInclude Include="resource\loader\fileloader.hpp" />
+    <ClInclude Include="resource\loader\memorymaploader.hpp" />
     <ClInclude Include="resource\resource.hpp" />
+    <ClInclude Include="resource\data\memorymapped.hpp" />
+    <ClInclude Include="resource\data\buffered.hpp" />
     <ClInclude Include="resource\resourceid.hpp" />
     <ClInclude Include="resource\resourceloader.hpp" />
     <ClInclude Include="resource\resourcemanager.hpp" />
@@ -154,7 +160,7 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="test\testengine.hpp" />
     <ClInclude Include="test\component\proxy.hxx" />
     <ClInclude Include="util\buffer.hxx" />
-    <ClInclude Include="util\logging.hpp" />
+    <ClInclude Include="log\console.hxx" />
     <ClInclude Include="Graphics\renderer.hpp" />
     <ClInclude Include="Input\glfw\glfwinputmanager.hxx" />
     <ClInclude Include="Input\inputlistener.hpp" />
@@ -173,6 +179,7 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClInclude Include="util\stringhash.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="application\config.cpp" />
     <ClCompile Include="application\servicelocator.cpp" />
     <ClCompile Include="Audio\irrKlang\irrKlangSound.cpp" />
     <ClCompile Include="Audio\irrKlang\irrKlangSoundManager.cpp" />
@@ -181,7 +188,8 @@ xcopy /d /y "$(SolutionDir)Assets\*.*" "$(OutDir)Assets"</Command>
     <ClCompile Include="Input\glfw\glfwInputManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\KeyMapping.cpp" />
-    <ClCompile Include="resource\loader\resourcefileloader.cpp" />
+    <ClCompile Include="resource\loader\fileloader.cpp" />
+    <ClCompile Include="resource\loader\memorymaploader.cpp" />
     <ClCompile Include="resource\resourcemanager.cpp" />
     <ClCompile Include="resource\thread\resourcethreadpool.cpp" />
     <ClCompile Include="scene\scene.cpp" />

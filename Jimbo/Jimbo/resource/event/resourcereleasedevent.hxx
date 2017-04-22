@@ -18,11 +18,13 @@ namespace jimbo
     class ResourceReleasedEvent : public Event<ResourceReleasedEvent>
     {
     public:
-        ResourceReleasedEvent(ResourceID id) : id_(id) {  }
+        ResourceReleasedEvent(ResourceID id, int bytesFreed) : id_(id), bytesFreed_(bytesFreed) {  }
         ResourceID getResourceID() const { return id_; }
+        int getBytesFreed() const { return bytesFreed_; }
 
     private:
         ResourceID id_;
+        int bytesFreed_;
     };
 }
 

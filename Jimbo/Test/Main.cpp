@@ -20,6 +20,7 @@ using namespace jimbo;
 
 // Testing
 #include "test/testengine.hpp"
+#include "log/logging.hpp"
 
 
 #ifdef _WIN32
@@ -38,24 +39,19 @@ int main()
     te.executeAllTests();
     te.logTestResults();
 
+    // Should be moved into here at some stage, so log details can be set in config too
+    // For now, just instantiate ourselves to get beautiful logging...
+    //app->logEvents();
+    jimbo::log::EventLog logEvents;
+
     // Start demo application using our example TestScene
-    boost::scoped_ptr<Application> app (new Application);
+    boost::scoped_ptr<Application> app (new Application(new Config("../config.toml")));
 
-    app->setFullScreen(false);
-    app->setWindowSize(800, 600);
-    app->setWindowName("Testing Engine");
-    app->setAudioEngine(Application::AudioEngine::IRRKLANG);
     app->setStartupScene(new test::TestScene);
-    app->capFrameRate(60);
-
-    // We can register all of our resources in advance
-    app->setResourceThreadPoolSize(4);
-
+    
     // Should register resources here under normal circumstances
-    app->registerResource(RID("testSound"), new test::ResourceLoaderDelay(new ResourceFileLoader("../Assets/Success.wav"), std::chrono::milliseconds(5000)));
-
-    // This should probably be registerStreamableResource..
-    app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
+    //app->registerResource(RID("testSound"), new test::ResourceLoaderDelay(new ResourceFileLoader("../Assets/Success.wav"), std::chrono::milliseconds(5000)));
+    //app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
 
     // All setup and good to go..
     app->run();

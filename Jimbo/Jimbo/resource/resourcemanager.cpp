@@ -10,7 +10,11 @@
 /////////////////////////////////////////////////////////
 
 #include "resource/resourcemanager.hpp"
-#include "util/logging.hpp"
+#include "application/servicelocator.hpp"
+#include "resource/event/resourceloadedevent.hxx"
+#include "resource/event/resourcereleasedevent.hxx"
+#include "event/eventmanager.hpp"
+#include "log/logging.hpp"
 
 // Delegates the load to the threadpool
 void jimbo::ResourceManager::loadResource(ResourceID id)
@@ -19,7 +23,7 @@ void jimbo::ResourceManager::loadResource(ResourceID id)
     // In production builds this should get optimised away
     if (loaderMap_.find(id) == loaderMap_.end())
     {
-        LOG("No loader available for resource [" + id.str() + "]");
+        LOG_ERROR("No loader available for resource [" + id.str() + "]");
         return;
     }
 
@@ -44,9 +48,10 @@ void jimbo::ResourceManager::update()
     // then put that into our map of loaded resources
     while (result = threadPool_.getLoadedResource())
     {
-        std::string logMessage = ("A resource was loaded [") + result->resourceID().str() + "] with size in bytes " + std::to_string(result->sizeInBytes());
-        LOG(logMessage);
-
+        ResourceID id = result->resourceID();
+        int size = result->sizeInBytes();
         loadedResources_[result->resourceID()] = std::move(result);
+
+        serviceLocator_->eventManager()->raiseEvent(new ResourceLoadedEvent(id, size));
     }
 }

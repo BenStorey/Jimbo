@@ -59,6 +59,11 @@ namespace jimbo
             queueInUse_->emplace_back(EventPtr(ev));
         }
 
+        void raiseEvent(std::unique_ptr<EventBase> ev)
+        {
+            queueInUse_->emplace_back(std::move(ev));
+        }
+        
         // We take ownership of these with a scoped ptr. As soon as the events have been dispatched, it will be
         // destroyed as it goes out of scope
         void immediateDispatch(EventBase* ev)

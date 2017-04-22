@@ -13,9 +13,16 @@
 #include "resource/resourceid.hpp"
 #include "resource/resourcemanager.hpp"
 
+#include "event/eventmanager.hpp"
+
 void jimbo::Scene::endScene()
 {
     serviceLocator_->sceneManager()->popScene();
+}
+
+void jimbo::Scene::pushScene(Scene * scene)
+{
+    serviceLocator_->sceneManager()->pushScene(scene);
 }
 
 void jimbo::Scene::pushScene(std::unique_ptr<Scene> scene)
@@ -31,4 +38,14 @@ void jimbo::Scene::quitApplication()
 void jimbo::Scene::loadResource(ResourceID id)
 {
     serviceLocator_->resourceManager()->loadResource(id);
+}
+
+void jimbo::Scene::raiseEvent(EventBase * ev)
+{
+    serviceLocator_->eventManager()->raiseEvent(ev);
+}
+
+void jimbo::Scene::raiseEvent(std::unique_ptr<EventBase> ev)
+{
+    serviceLocator_->eventManager()->raiseEvent(std::move(ev));
 }

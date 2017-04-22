@@ -14,7 +14,6 @@
 
 #include "resource/resourceloader.hpp"
 #include "resource/resourceid.hpp"
-#include "util/logging.hpp"
 
 // For sleeping
 #include <thread>
@@ -34,10 +33,8 @@ namespace jimbo
 
             std::unique_ptr<Resource> load(ResourceID id) override
             {
-                LOG("Load Resource with a delay called");
                 std::this_thread::sleep_for(millisToSleep_);
                 auto r = wrappedLoader_->load(id);
-                LOG("Finished loading resource now");
                 return r;
             }
 

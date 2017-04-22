@@ -20,12 +20,16 @@ namespace jimbo
     class Resource;
     class ResourceID;
 
-    class ResourceLoader
+    namespace resource
     {
-    public:
-        virtual std::unique_ptr<Resource> load(ResourceID) = 0;
-    };
 
+        class Loader
+        {
+        public:
+            virtual std::unique_ptr<Resource> load(ResourceID) = 0;
+        };
+
+    }
 }
 
 #endif // JIMBO_RESOURCE_RESOURCELOADER_HPP

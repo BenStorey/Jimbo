@@ -18,7 +18,7 @@
 #include <boost/noncopyable.hpp>
 #include <memory>
 
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 
 namespace jimbo
 {

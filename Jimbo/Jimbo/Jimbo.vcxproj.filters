@@ -69,9 +69,6 @@
     <ClInclude Include="Scene\scenemanager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\logging.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Jimbo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -91,9 +88,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource\resourceloader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource\loader\resourcefileloader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource\thread\threadsafequeue.hxx">
@@ -138,6 +132,30 @@
     <ClInclude Include="resource\event\resourcereleasedevent.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="log\logging.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\console.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\event.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\loader\fileloader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\loader\memorymaploader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\data\buffered.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\data\memorymapped.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application\config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\Renderer.cpp">
@@ -173,13 +191,19 @@
     <ClCompile Include="scene\scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resource\loader\resourcefileloader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="resource\thread\resourcethreadpool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="resource\resourcemanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\loader\fileloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\loader\memorymaploader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

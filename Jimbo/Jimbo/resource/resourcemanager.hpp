@@ -22,13 +22,14 @@
 
 namespace jimbo
 {
-    
+    class ServiceLocator;
+
     class ResourceManager : boost::noncopyable
     {
     public:
 
         // We have a trivial constructor so that we can be instantiated immediately
-        ResourceManager() {};
+        ResourceManager(ServiceLocator const* serviceLocator) : serviceLocator_(serviceLocator) {};
 
         void setThreadPoolSize(int numThreads) { numThreads_ = numThreads; }
 
@@ -46,6 +47,15 @@ namespace jimbo
         void hintReleaseResource(ResourceID id) {}
         void releaseResource(ResourceID id) {}
 
+        // Might be useful when switching between scenes etc
+        void releaseAll();
+
+        // Log the whole universe about what's loaded and what isn't
+        void logStatus();
+
+        // reload something. Could be handy when I've swapped files out etc
+        void reloadResource(ResourceID id);
+
         // Instantiate our thread pool
         void initialise();
 
@@ -55,6 +65,9 @@ namespace jimbo
         void update();
 
     private:
+
+        // Our service. Uses a pointer to const
+        ServiceLocator const* serviceLocator_;
 
         // Loaders, so for each resource ID we can find out how to load it (from file, archive, network etc)
         std::unordered_map<ResourceID, std::unique_ptr<ResourceLoader>> loaderMap_;

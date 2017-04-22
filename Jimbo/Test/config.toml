@@ -1,0 +1,36 @@
+﻿
+#############################################################################
+# Example Jimbo engine config with explanations 
+#
+# Where we take strings as parameters to describe different functions,
+# these are all case insensitive (Irrklang == irrklang == iRrKlAnG)
+#
+#############################################################################
+
+# Display settings
+[display]
+title = "Jimbo Engine"
+fullscreen = false
+windowsize = [ 800, 600]
+capframerate = 60 
+
+# Some parts of the engine can delegate to different libraries, so define those here
+# For example irrklang for sound versus OpenAL implementation
+# In the future will hopefully also let you choose between OpenGL and Vulcan!
+[implementation]
+audio = "Irrklang" # "irrklang" and "silent" supported
+
+# Define resources and their locations, so that the engine knows where/how to load them
+[resource]
+threadpoolsize = 4  # How many threads the engine should run for loading resources
+
+  # Currently only file loaded resources are supported. These require a name and path
+  [[fileloader]]
+  name = "testSound"
+  path = "../Assets/Success.wav"
+
+  [[fileloader]]
+  name = "testMusic"
+  path = "../Assets/SomeMusic.ogg"
+
+  # ... and so on and so forth

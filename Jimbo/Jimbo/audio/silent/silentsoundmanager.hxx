@@ -11,7 +11,7 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 #include "audio/soundmanager.hpp"
 #include "audio/silent/silentsound.hxx"
 

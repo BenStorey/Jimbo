@@ -22,16 +22,9 @@
 #include <boost/noncopyable.hpp>
 #include <memory>
 
-// Includes for our service types
-//#include <audio/soundmanager.hpp>
-//#include <input/inputmanager.hpp>
-//#include <event/eventmanager.hpp>
-//#include <scene/scenemanager.hpp>
-//#include <graphics/renderer.hpp>
-
 namespace jimbo
 {
-
+    class Config;
     class SoundManager;
     class InputManager;
     class EventManager;
@@ -49,13 +42,15 @@ namespace jimbo
         void setService(SceneManager* scm);
         void setService(ResourceManager* rm);
         void setService(Renderer* r);
+        void setService(Config* c);
 
-        std::shared_ptr<SoundManager> soundManager()       const { return sm_; }
-        std::shared_ptr<InputManager> inputManager()       const { return im_; }
-        std::shared_ptr<EventManager> eventManager()       const { return em_; }
-        std::shared_ptr<SceneManager> sceneManager()       const { return scm_; }
+        std::shared_ptr<SoundManager>    soundManager()       const { return sm_; }
+        std::shared_ptr<InputManager>    inputManager()       const { return im_; }
+        std::shared_ptr<EventManager>    eventManager()       const { return em_; }
+        std::shared_ptr<SceneManager>    sceneManager()       const { return scm_; }
         std::shared_ptr<ResourceManager> resourceManager() const { return rm_; }
-        std::shared_ptr<Renderer>     renderer()           const { return r_; }
+        std::shared_ptr<Renderer>        renderer()           const { return r_; }
+        std::shared_ptr<Config>          config()          const { return c_; }
 
     private:
         std::shared_ptr<SoundManager>    sm_;
@@ -64,6 +59,7 @@ namespace jimbo
         std::shared_ptr<SceneManager>    scm_;
         std::shared_ptr<ResourceManager> rm_;
         std::shared_ptr<Renderer>        r_;
+        std::shared_ptr<Config>          c_;
     };
     
 }

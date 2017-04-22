@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////
-// Application.cpp
+// application.cpp
 //
 // Ben Storey
 //
@@ -14,7 +14,8 @@
 #include <glfw3.h>
 
 #include "application/application.hpp"
-#include "util/logging.hpp"
+#include "application/config.hpp"
+#include "log/logging.hpp"
 
 // We are using the irrKlang audio engine for now, can move it out when we want to use something free...
 #include "event/eventmanager.hpp"
@@ -26,15 +27,19 @@
 #include "input/glfw/glfwinputmanager.hxx"
 #include "resource/resourcemanager.hpp"
 
+
 jimbo::Application::Application() 
 {
-    // Defaults
-    windowName_ = "Jimbo Project";
-    audioEngine_ = AudioEngine::IRRKLANG;
+    Application(new Config());
+}
+
+jimbo::Application::Application(Config* config)
+{
     serviceLocator_.reset(new ServiceLocator);
 
     // We set this right away, as then resource related setup calls can be passed along to the resource manager
-    serviceLocator_->setService(new ResourceManager);
+    serviceLocator_->setService(new ResourceManager(serviceLocator_.get()));
+    serviceLocator_->setService(config);
 }
 
 jimbo::Application::~Application() 
@@ -42,10 +47,6 @@ jimbo::Application::~Application()
 
 }
 
-void jimbo::Application::setResourceThreadPoolSize(int numThreads)
-{
-    serviceLocator_->resourceManager()->setThreadPoolSize(numThreads);
-}
 
 void jimbo::Application::registerResource(ResourceID id, ResourceLoader * loader)
 {
@@ -55,11 +56,11 @@ void jimbo::Application::registerResource(ResourceID id, ResourceLoader * loader
 void jimbo::Application::initialise()
 {
     // Switch depending on the choice
-    switch (audioEngine_)
+    switch (serviceLocator_->config()->getAudioEngine())
     {
-    case AudioEngine::IRRKLANG:
+    case Config::AudioEngine::IRRKLANG:
         serviceLocator_->setService(new irrKlangSoundManager); break;
-    case AudioEngine::SILENT:
+    case Config::AudioEngine::SILENT:
         serviceLocator_->setService(new SilentSoundManager); break;
     }
 
@@ -94,7 +95,8 @@ void jimbo::Application::setupWindow()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL 
 
     // Open a window and create its OpenGL context
-    auto window = glfwCreateWindow(windowSizeX_, windowSizeY_, windowName_.c_str(), nullptr, nullptr);
+    auto config = serviceLocator_->config();
+    auto window = glfwCreateWindow(config->getWindowSize().x, config->getWindowSize().y, config->getWindowName, nullptr, nullptr);
 
     if (window == nullptr)
     {
@@ -145,3 +147,4 @@ void jimbo::Application::run()
 
     glfwTerminate();
 }
+

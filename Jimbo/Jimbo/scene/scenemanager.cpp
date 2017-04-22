@@ -13,11 +13,13 @@
 #include "graphics/renderer.hpp"
 #include "input/inputmanager.hpp"
 #include "resource/resourcemanager.hpp"
+#include "event/eventmanager.hpp"
 
 
 void jimbo::SceneManager::runGameLoop()
 {
     startTime_ = Clock::now();
+
     
     checkNextScene();
 
@@ -35,12 +37,15 @@ void jimbo::SceneManager::runGameLoop()
         serviceLocator_->resourceManager()->update();
 
         // Update our scene logic based on elapsed time
-        currentScene->onUpdate(elapsedTime);
+        currentScene->onUpdate(delta);
 
         // Render the world
         serviceLocator_->renderer()->startRenderFrame();
         currentScene->onRender();
         serviceLocator_->renderer()->endRenderFrame();
+
+        // Fire any events that have been handled during the frame
+        serviceLocator_->eventManager()->dispatchEvents();
 
         // Check we haven't finished
         checkEndApplication();
@@ -64,7 +69,12 @@ void jimbo::SceneManager::checkNextScene()
 
     if (nextScene_)
     {
-        nextScene_->setServiceLocator(serviceLocator_);
+        // We are a friend of all scenes, so we can set some handy variables for it
+        nextScene_->serviceLocator_ = serviceLocator_;
+        nextScene_->sceneRunTime_ = std::chrono::milliseconds(0);
+        nextScene_->applicationRunTime_ = getElapsedTime();
+
+        // Initialise it
         nextScene_->onInitialise(getElapsedTime());
 
         if (!sceneStack_.empty())

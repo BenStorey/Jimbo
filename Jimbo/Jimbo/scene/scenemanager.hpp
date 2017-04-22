@@ -15,7 +15,7 @@
 #include <memory>
 #include <chrono>
 #include <boost/noncopyable.hpp>
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 
 #include "scene/scene.hpp"
 
@@ -36,10 +36,8 @@ namespace jimbo
 
         bool hasActiveScene() const { return !sceneStack_.empty(); }
 
-        void pushScene(std::unique_ptr<Scene> newScene)
-        { 
-            nextScene_ = std::move(newScene);
-        }
+        void pushScene(Scene* newScene) { nextScene_ = std::unique_ptr <Scene>(newScene); }
+        void pushScene(std::unique_ptr<Scene> newScene) { nextScene_ = std::move(newScene); }
 
         void popScene() { ++popScene_; }
 

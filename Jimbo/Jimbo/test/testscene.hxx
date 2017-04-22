@@ -39,8 +39,6 @@ namespace jimbo
                 // We would however normally request our resources to be loaded here (if not earlier!)
 
                 loadResource(RID("testSound"));
-                loadResource(RID("testSound2"));
-                loadResource(RID("testSound3"));
 
                 //loadResource(RID("sound"));
                 //loadResources({ RID("music"), RID("sound") });

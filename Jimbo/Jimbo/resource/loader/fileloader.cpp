@@ -8,20 +8,18 @@
 //
 /////////////////////////////////////////////////////////
 
-#include "resource/loader/resourcefileloader.hpp"
+#include "resource/loader/fileloader.hpp"
 #include "resource/resource.hpp"
 #include "resource/resourceid.hpp"
 
 #include <iterator>
 #include <fstream>
 
-// Test
-#include "util/logging.hpp"
-
 using namespace jimbo;
+using namespace jimbo::resource;
 
 
-std::unique_ptr<Resource> ResourceFileLoader::load(ResourceID id)
+std::unique_ptr<Resource> FileLoader::load(ResourceID id)
 {
     std::ifstream file(path_, std::ios::binary);
     Buffer buf;

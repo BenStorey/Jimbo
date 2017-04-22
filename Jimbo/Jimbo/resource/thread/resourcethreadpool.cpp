@@ -12,7 +12,7 @@
 #include "resource/resourceloader.hpp"
 #include "resource/resourceid.hpp"
 #include "resource/resource.hpp"
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 
 using namespace jimbo;
 

@@ -11,6 +11,7 @@
 
 #include "servicelocator.hpp"
 
+#include "application/config.hpp"
 #include "audio/soundmanager.hpp"
 #include "input/inputmanager.hpp"
 #include "event/eventmanager.hpp"
@@ -46,4 +47,9 @@ void jimbo::ServiceLocator::setService(ResourceManager * rm)
 void jimbo::ServiceLocator::setService(Renderer * r)
 {
     r_.reset(r);
+}
+
+void jimbo::ServiceLocator::setService(Config* c)
+{
+    c_.reset(c);
 }

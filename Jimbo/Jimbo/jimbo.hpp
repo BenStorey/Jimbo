@@ -25,6 +25,7 @@
 
 // Include the rest of our engine so client doesn't have to
 #include "application/application.hpp"
+#include "application/config.hpp"
 
 // Events
 #include "event/event.hpp"

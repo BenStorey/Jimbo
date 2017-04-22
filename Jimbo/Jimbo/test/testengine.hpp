@@ -13,7 +13,7 @@
 #include <map>
 #include <string>
 #include <boost/format.hpp>
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 
 // Include everything test related
 #include "test/component/event.hxx"
@@ -69,7 +69,7 @@ namespace jimbo
                 toLog += "\nTest Results:\n\n***************\n\n";
                 toLog += "Of " + std::to_string(numTests) + " Tests, " + std::to_string(numTestsPassed) + " Tests Succeeded\n\n***************\n\n";
 
-                Log::d(toLog);
+                log::Log::d(toLog);
             }
 
         private:

@@ -12,7 +12,7 @@
 /////////////////////////////////////////////////////////
 
 #include "audio/sound.hpp"
-#include "util/logging.hpp"
+#include "log/logging.hpp"
 
 namespace jimbo
 {
