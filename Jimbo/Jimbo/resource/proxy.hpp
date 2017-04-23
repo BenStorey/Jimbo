@@ -1,6 +1,6 @@
 
-#ifndef JIMBO_UTIL_PROXY_HPP
-#define JIMBO_UTIL_PROXY_HPP
+#ifndef JIMBO_RESOURCE_PROXY_HPP
+#define JIMBO_RESOURCE_PROXY_HPP
 
 /////////////////////////////////////////////////////////
 // proxy.hpp
@@ -138,4 +138,4 @@ namespace jimbo
     template <class T> Proxy<T>  make_proxy(T* t) { return Proxy<T>(t);  }
 }
 
-#endif // JIMBO_UTIL_PROXY_HPP
+#endif // JIMBO_RESOURCE_PROXY_HPP

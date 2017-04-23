@@ -13,7 +13,6 @@
 /////////////////////////////////////////////////////////
 
 #include <string>
-#include <glm/common.hpp>
 #include <boost/optional/optional.hpp>
 #include <boost/noncopyable.hpp>
 
@@ -57,9 +56,9 @@ namespace jimbo
         void setFullScreen(bool fullScreen) { fullScreen_ = fullScreen; }
         bool isFullScreen() const { return fullScreen_; }
 
-        void setWindowSize(int x, int y) { windowSize_ = glm::vec2(x, y); }
-        void setWindowSize(glm::vec2 v) { windowSize_ = v; }
-        glm::vec2 getWindowSize() const { return windowSize_; }
+        void setWindowSize(int x, int y) { windowSizeX_ = x; windowSizeY_ = y; }
+        int getWindowSizeX() const { return windowSizeX_; }
+        int getWindowSizeY() const { return windowSizeY_; }
 
         void setWindowName(std::string name) { windowName_ = name; }
         std::string getWindowName() const { return windowName_; }
@@ -82,7 +81,8 @@ namespace jimbo
 
         // Variables that can be configured, all should have default values!
         bool fullScreen_ = false;
-        glm::vec2 windowSize_ = glm::vec2(800,600);
+        int windowSizeX_ = 800;
+        int windowSizeY_ = 600;
         std::string windowName_ = "Jimbo Engine";
         AudioEngine audioEngine_ = AudioEngine::IRRKLANG;
         boost::optional<int> fps_;

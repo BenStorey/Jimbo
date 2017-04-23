@@ -19,10 +19,9 @@ namespace jimbo
     class Resource;
     class ResourceID;
 
-    namespace resource
+    namespace resourceloader
     {
-
-        class FileLoader : public Loader
+        class FileLoader : public ResourceLoader
         {
         public:
 
@@ -36,7 +35,6 @@ namespace jimbo
 
             std::string path_;
         };
-
     }
 }
 

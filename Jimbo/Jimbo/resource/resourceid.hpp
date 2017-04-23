@@ -63,7 +63,7 @@ namespace jimbo
         std::uint32_t toInt() const { return id_; }
 
         // Regular interface
-        static constexpr std::uint32_t generateId(const char* id) { return StringHash::compileTimeJenkinsStringHash(id); }
+        static constexpr std::uint32_t generateId(const char* id) { return util::StringHash::compileTimeJenkinsStringHash(id); }
         ResourceID(std::uint32_t id) : id_(id) {}
 
         bool ResourceID::operator==(const ResourceID& other) const { return id_ == other.id_; }

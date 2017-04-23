@@ -16,7 +16,7 @@
 #include <fstream>
 
 using namespace jimbo;
-using namespace jimbo::resource;
+using namespace jimbo::resourceloader;
 
 
 std::unique_ptr<Resource> FileLoader::load(ResourceID id)

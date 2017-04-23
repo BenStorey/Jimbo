@@ -33,25 +33,21 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 int main()
 #endif
 {
-
+    
     // Execute all tests on startup
     jimbo::test::TestEngine te;
     te.executeAllTests();
     te.logTestResults();
 
-    // Should be moved into here at some stage, so log details can be set in config too
-    // For now, just instantiate ourselves to get beautiful logging...
-    //app->logEvents();
-    jimbo::log::EventLog logEvents;
-
-    // Start demo application using our example TestScene
-    boost::scoped_ptr<Application> app (new Application(new Config("../config.toml")));
+    // This file needs to be saved without the UTF BOM. Which I think means it can't be edited within VS - annoying!
+    Config* config = new Config("config.toml");
+    boost::scoped_ptr<Application> app(new Application(config));
 
     app->setStartupScene(new test::TestScene);
     
     // Should register resources here under normal circumstances
-    //app->registerResource(RID("testSound"), new test::ResourceLoaderDelay(new ResourceFileLoader("../Assets/Success.wav"), std::chrono::milliseconds(5000)));
-    //app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
+    // app->registerResource(RID("testSound"), new test::ResourceLoaderDelay(new ResourceFileLoader("../Assets/Success.wav"), std::chrono::milliseconds(5000)));
+    // app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
 
     // All setup and good to go..
     app->run();

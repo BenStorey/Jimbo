@@ -1,18 +1,26 @@
-﻿
 #############################################################################
 # Example Jimbo engine config with explanations 
 #
 # Where we take strings as parameters to describe different functions,
 # these are all case insensitive (Irrklang == irrklang == iRrKlAnG)
 #
+# This file should be saved in UTF-8 *WITHOUT* the BOM
+#
+# 日本語テスト
+#
 #############################################################################
 
 # Display settings
 [display]
-title = "Jimbo Engine"
+title = "Jimbo Engine" 
 fullscreen = false
 windowsize = [ 800, 600]
 capframerate = 60 
+
+# Where and at what levels we should log messages to
+[logging]
+console = true
+filename = ""  # If there is a filename, we'll log. Otherwise 
 
 # Some parts of the engine can delegate to different libraries, so define those here
 # For example irrklang for sound versus OpenAL implementation
@@ -24,13 +32,13 @@ audio = "Irrklang" # "irrklang" and "silent" supported
 [resource]
 threadpoolsize = 4  # How many threads the engine should run for loading resources
 
-  # Currently only file loaded resources are supported. These require a name and path
-  [[fileloader]]
-  name = "testSound"
-  path = "../Assets/Success.wav"
+# Currently only file loaded resources are supported. These require a name and path
+	[[fileloader]]
+	name = "testSound"
+	path = "../Assets/Success.wav"
 
-  [[fileloader]]
-  name = "testMusic"
-  path = "../Assets/SomeMusic.ogg"
+	[[fileloader]]
+	name = "testMusic"
+	path = "../Assets/SomeMusic.ogg"
 
   # ... and so on and so forth

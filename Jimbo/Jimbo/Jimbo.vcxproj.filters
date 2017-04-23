@@ -99,9 +99,6 @@
     <ClInclude Include="audio\jukebox.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\proxy.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test\testengine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -132,28 +129,37 @@
     <ClInclude Include="resource\event\resourcereleasedevent.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="log\logging.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="log\console.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="log\event.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource\loader\fileloader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource\loader\memorymaploader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource\data\buffered.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource\data\memorymapped.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="application\config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logger.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logger\console.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logger\file.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\proxy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logger\history.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logging.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logengine.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\log\resourcelog.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logmessage.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -198,9 +204,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="resource\loader\fileloader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="resource\loader\memorymaploader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="application\config.cpp">

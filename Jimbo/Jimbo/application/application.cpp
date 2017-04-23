@@ -12,10 +12,12 @@
 // path, we include here in the cpp only. glad is used for OpenGL setup
 #include <glad/glad.h>
 #include <glfw3.h>
+#include <boost/filesystem.hpp>
 
 #include "application/application.hpp"
 #include "application/config.hpp"
 #include "log/logging.hpp"
+#include "log/logger/console.hxx"
 
 // We are using the irrKlang audio engine for now, can move it out when we want to use something free...
 #include "event/eventmanager.hpp"
@@ -30,7 +32,11 @@
 
 jimbo::Application::Application() 
 {
-    Application(new Config());
+    // If no config provided, see if we can find one
+    if (boost::filesystem::exists("config.toml"))
+        Application(new Config("config.toml"));
+    else
+        Application(new Config());
 }
 
 jimbo::Application::Application(Config* config)
@@ -40,6 +46,9 @@ jimbo::Application::Application(Config* config)
     // We set this right away, as then resource related setup calls can be passed along to the resource manager
     serviceLocator_->setService(new ResourceManager(serviceLocator_.get()));
     serviceLocator_->setService(config);
+
+    // Configure the logging, on what is as of right now a global variable
+    log::attachLogger(new log::ConsoleLogger());
 }
 
 jimbo::Application::~Application() 
@@ -96,7 +105,7 @@ void jimbo::Application::setupWindow()
 
     // Open a window and create its OpenGL context
     auto config = serviceLocator_->config();
-    auto window = glfwCreateWindow(config->getWindowSize().x, config->getWindowSize().y, config->getWindowName, nullptr, nullptr);
+    auto window = glfwCreateWindow(config->getWindowSizeX(), config->getWindowSizeY(), config->getWindowName().c_str(), nullptr, nullptr);
 
     if (window == nullptr)
     {

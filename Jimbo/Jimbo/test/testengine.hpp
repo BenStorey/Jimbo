@@ -14,6 +14,7 @@
 #include <string>
 #include <boost/format.hpp>
 #include "log/logging.hpp"
+#include "log/logger/console.hxx"
 
 // Include everything test related
 #include "test/component/event.hxx"
@@ -53,7 +54,15 @@ namespace jimbo
 
             void logTestResults()
             {
-                std::string toLog = "\nTest Results:\n\n***************\n\n";
+                // Workaround for us running this before the Application has set any log details
+                // Might be worth re-thinking the API somewhat
+                std::shared_ptr<log::ConsoleLogger> logger(new log::ConsoleLogger);
+                if (!log::loggingEnabled())
+                {
+                    log::attachLogger(logger);
+                }
+
+                std::string toLog = "\n\nTest Results:\n\n***************\n\n";
 
                 int numTests = 0;
                 int numTestsPassed = 0;
@@ -69,7 +78,9 @@ namespace jimbo
                 toLog += "\nTest Results:\n\n***************\n\n";
                 toLog += "Of " + std::to_string(numTests) + " Tests, " + std::to_string(numTestsPassed) + " Tests Succeeded\n\n***************\n\n";
 
-                log::Log::d(toLog);
+                LOG(toLog);
+
+                log::detachLogger(logger);
             }
 
         private:

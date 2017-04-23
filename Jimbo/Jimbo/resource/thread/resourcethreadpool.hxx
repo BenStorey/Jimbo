@@ -19,6 +19,7 @@
 #include "resource/thread/threadpool.hxx"
 #include "resource/thread/threadsafequeue.hxx"
 #include "resource/resource.hpp"
+#include "resource/resourceloader.hpp"
 
 namespace jimbo
 {

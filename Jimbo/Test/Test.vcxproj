@@ -76,17 +76,23 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Ben\Source\Repos\boost_1_63_0;$(SolutionDir)Jimbo;$(SolutionDir)Libraries\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\howardhinnant;$(SolutionDir)Libraries\glm-0.9.8.4;C:\Users\Ben\Source\Repos\boost_1_63_0;$(SolutionDir)Jimbo;$(SolutionDir)Libraries\boost_1_63_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WIN32_WINNT=0x0501;WIN32_LEAN_AND_MEAN=1</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\chrono\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\thread\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\regex\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\date_time\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\system\build\msvc-14.0\debug\link-static\threading-multi;$(SolutionDir)Libraries\irrKlang-1.5.0\lib\;$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\filesystem\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\chrono\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\thread\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\regex\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\date_time\build\msvc-14.0\debug\link-static\threading-multi;C:\Users\Ben\Source\Repos\boost\boost\bin.v2\libs\system\build\msvc-14.0\debug\link-static\threading-multi;$(SolutionDir)Libraries\irrKlang-1.5.0\lib\;$(SolutionDir)Libraries\openal-soft-1.17.2\lib\Win32;$(SolutionDir)Libraries\glfw-3.2.1\lib;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Jimbo.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -19,6 +19,8 @@
 void jimbo::SceneManager::runGameLoop()
 {
     startTime_ = Clock::now();
+    auto endFrameTime = startTime_;
+    auto startFrameTime = startTime_;
 
     
     checkNextScene();
@@ -26,6 +28,10 @@ void jimbo::SceneManager::runGameLoop()
     while (hasActiveScene())
     {
         checkNextScene();
+
+        auto endFrameTime = Clock::now();
+        auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(endFrameTime - startFrameTime);
+        auto startFrameTime = Clock::now();
 
         auto elapsedTime = getElapsedTime();
         auto currentScene = sceneStack_.top().get();

@@ -34,13 +34,15 @@ void jimbo::Config::reload()
         auto frameRate = display->get_as<int>("capframerate");
         if (frameRate) setFrameRateCap(*frameRate);
         
-        auto windowSize = display->get_array_of<int>("windowsize");
+        // Frustratingly, this fails with int but it's happy with int64_t. 
+        // So for now I just take int64_t and cast it down to a regular int (which is plenty big enough..)
+        auto windowSize = display->get_array_of<int64_t>("windowsize");
         if (windowSize)
         {
             if (windowSize->size() != 2)
-                throw std::invalid_argument("Incorrect number of parameters for windowsize. Expected [ x, y] ");
+                throw std::invalid_argument("Incorrect number of parameters for windowsize. Expected [ x, y ] ");
 
-            setWindowSize(windowSize->at(0), windowSize->at(1));
+            setWindowSize(static_cast<int>(windowSize->at(0)), static_cast<int>(windowSize->at(1)));
         }
     }
 
@@ -55,8 +57,8 @@ void jimbo::Config::reload()
         auto audio = implementation->get_as<std::string>("audio");
         if (audio)
         {
-            if (boost::iequals(audio, "irrklang")) audioEngine_ = AudioEngine::IRRKLANG;
-            if (boost::iequals(audio, "silent")) audioEngine_ = AudioEngine::SILENT;
+            if (boost::iequals(*audio, "irrklang")) audioEngine_ = AudioEngine::IRRKLANG;
+            if (boost::iequals(*audio, "silent")) audioEngine_ = AudioEngine::SILENT;
         }
     }
 
