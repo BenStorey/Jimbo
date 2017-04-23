@@ -67,7 +67,7 @@ namespace jimbo
             {
                 // These probably aren't required anymore, so can forget about them
                 // We only hint because we don't really care if they are removed or not
-                //hintReleaseResource(RID("music"));
+                //hintReleaseResource(RID("testSound"));
                 //hintReleaseResource(RID("sound"));
             }
 

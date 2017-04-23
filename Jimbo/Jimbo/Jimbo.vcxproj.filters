@@ -93,9 +93,6 @@
     <ClInclude Include="resource\thread\threadsafequeue.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\buffer.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="audio\jukebox.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

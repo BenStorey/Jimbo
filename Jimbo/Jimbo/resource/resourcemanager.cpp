@@ -11,10 +11,16 @@
 
 #include "resource/resourcemanager.hpp"
 #include "application/servicelocator.hpp"
+#include "application/config.hpp"
 #include "resource/event/resourceloadedevent.hxx"
 #include "resource/event/resourcereleasedevent.hxx"
 #include "event/eventmanager.hpp"
 #include "log/logging.hpp"
+
+jimbo::ResourceManager::ResourceManager(ServiceLocator const * serviceLocator) : serviceLocator_(serviceLocator)
+{
+    numThreads_ = serviceLocator_->config()->getResourceThreadPoolSize();
+}
 
 // Delegates the load to the threadpool
 void jimbo::ResourceManager::loadResource(ResourceID id)

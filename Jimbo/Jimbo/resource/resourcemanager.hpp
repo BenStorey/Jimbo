@@ -28,8 +28,7 @@ namespace jimbo
     {
     public:
 
-        // We have a trivial constructor so that we can be instantiated immediately
-        ResourceManager(ServiceLocator const* serviceLocator) : serviceLocator_(serviceLocator) {};
+        ResourceManager(ServiceLocator const* serviceLocator);
 
         void setThreadPoolSize(int numThreads) { numThreads_ = numThreads; }
 
@@ -74,13 +73,9 @@ namespace jimbo
 
         // Loaded resources
         std::unordered_map<ResourceID, std::unique_ptr<Resource>> loadedResources_;
-
-        // Support the concept of Resource groups, as we could have dependencies between resources (an actor depends on mesh and texture say)
-        // We can just 
-//        std::unordered_map<ResourceID, std::vector<ResourceID>> resourceGroups_;
-
+        
         // How many threads in our pool
-        int numThreads_ = 1;
+        int numThreads_;
 
         // The threadpool itself
         ResourceThreadPool threadPool_;

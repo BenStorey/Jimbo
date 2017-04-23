@@ -33,7 +33,7 @@ namespace jimbo
         void stop();
 
         // Support going quiet gradually between music tracks
-        // In AAA world we'd have composed music for transitions, but we won't go quite so far .. :)
+        // In AAA world we'd have composed music for transitions, but we won't go quite so far ..
         void setTransitionFadeOutTime(std::chrono::milliseconds millis);
         void setTransitionFadeInTime(std::chrono::milliseconds millis);
 

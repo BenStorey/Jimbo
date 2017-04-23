@@ -32,7 +32,7 @@ namespace jimbo
     class ResourceManager;
     class Renderer;
     
-    class ServiceLocator : boost::noncopyable
+    class ServiceLocator final : boost::noncopyable
     {
     public:
 

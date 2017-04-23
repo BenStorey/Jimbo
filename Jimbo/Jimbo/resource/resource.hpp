@@ -8,14 +8,14 @@
 // Ben Storey
 //
 // A resource is something that is managed by our resource manager and loaded/unloaded behind the scenes
-// Currently I just store the data in a vector, but I should probably consider
-// just having the assets mapped directly into memory. 
+//
+// Expect this to be completely replaced as the logic for loading/releasing assets is implemented...
 //
 /////////////////////////////////////////////////////////
 
 #include <boost/noncopyable.hpp>
+#include <vector>
 #include "resource/resourceid.hpp"
-#include "util/buffer.hxx"
 
 namespace jimbo
 {
@@ -23,24 +23,17 @@ namespace jimbo
     {
     public:
 
+        using Buffer = std::vector<char>;
+
         Resource(ResourceID id) : id_(id) {}
         Resource(ResourceID id, Buffer&& data) : id_(id), buffer_(std::move(data)) {}
         virtual ~Resource() {}
-
-        // TODO - Interface should probably always be a stream!!!!
-        // Then for non streamable media just stream 100% the data every time
 
         // Swap trick to force the buffer to be released
         void release()
         {
             buffer_ = Buffer(0);
         }
-
-        // should return to the front of the memory location probably, not the vec..
-        //const Buffer& data() const
-        //{
-        //   return buffer_;
-        //}
 
         int sizeInBytes() const
         {
@@ -51,6 +44,7 @@ namespace jimbo
         {
             return buffer_.size() > 0;
         }
+
         ResourceID resourceID() const { return id_; }
 
     protected:

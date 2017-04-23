@@ -15,7 +15,7 @@
 
 void jimbo::Config::reload()
 {
-    if (path_.length() == 0) throw std::invalid_argument("Config has no filename defined to reload");
+    if (path_.length() == 0) throw std::invalid_argument("No config filename has been provided");
 
     auto config = cpptoml::parse_file(path_);
 

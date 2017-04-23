@@ -79,7 +79,7 @@ namespace jimbo
 
         std::string path_;
 
-        // Variables that can be configured, all should have default values!
+        // Variables that can be configured, all should have defaults
         bool fullScreen_ = false;
         int windowSizeX_ = 800;
         int windowSizeY_ = 600;

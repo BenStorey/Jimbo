@@ -33,8 +33,8 @@
 jimbo::Application::Application() 
 {
     // If no config provided, see if we can find one
-    if (boost::filesystem::exists("config.toml"))
-        Application(new Config("config.toml"));
+    if (boost::filesystem::exists(DEFAULT_CONFIG_PATH))
+        Application(new Config(DEFAULT_CONFIG_PATH));
     else
         Application(new Config());
 }
@@ -43,9 +43,8 @@ jimbo::Application::Application(Config* config)
 {
     serviceLocator_.reset(new ServiceLocator);
 
-    // We set this right away, as then resource related setup calls can be passed along to the resource manager
-    serviceLocator_->setService(new ResourceManager(serviceLocator_.get()));
     serviceLocator_->setService(config);
+    serviceLocator_->setService(new ResourceManager(serviceLocator_.get()));
 
     // Configure the logging, on what is as of right now a global variable
     log::attachLogger(new log::ConsoleLogger());

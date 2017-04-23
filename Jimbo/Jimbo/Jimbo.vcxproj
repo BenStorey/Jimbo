@@ -161,7 +161,6 @@
     <ClInclude Include="test\component\resourceloader.hxx" />
     <ClInclude Include="test\testengine.hpp" />
     <ClInclude Include="test\component\proxy.hxx" />
-    <ClInclude Include="util\buffer.hxx" />
     <ClInclude Include="log\logger\console.hxx" />
     <ClInclude Include="Graphics\renderer.hpp" />
     <ClInclude Include="Input\glfw\glfwinputmanager.hxx" />

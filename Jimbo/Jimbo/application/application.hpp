@@ -45,6 +45,9 @@ namespace jimbo
 
     public:
 
+        // Default config file location to look for if default is not provided
+        const std::string DEFAULT_CONFIG_PATH = "config.toml";
+
         Application();
         Application(Config* config);
         ~Application();

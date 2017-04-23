@@ -22,7 +22,7 @@ using namespace jimbo::resourceloader;
 std::unique_ptr<Resource> FileLoader::load(ResourceID id)
 {
     std::ifstream file(path_, std::ios::binary);
-    Buffer buf;
+    std::vector<char> buf;
     buf.assign(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
 
     return std::unique_ptr<Resource>(new Resource(id, std::move(buf)));

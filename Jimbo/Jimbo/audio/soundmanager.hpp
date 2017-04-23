@@ -30,8 +30,7 @@ namespace jimbo
 
         virtual void stopAllSounds() = 0;
 
-        // TODO - This will no longer be overriden, as in here we need to track the resources
-        // as and when they come available. Then the subclass should only implement the minimum
+        // TODO - Needs work to interact with new resource loading system
 
         virtual std::unique_ptr<Sound> createSound() = 0;
 
@@ -42,7 +41,7 @@ namespace jimbo
         std::vector<ResourceID> pendingResourceLoads_;
 
         // We own the jukebox too, for playing music tracks
-        std::unique_ptr<Jukebox> jukebox;
+        std::unique_ptr<Jukebox> jukebox_;
     };
 }
 
