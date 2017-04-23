@@ -37,12 +37,12 @@ namespace jimbo
         
         // Note the use of a flat_set! It's basically a sorted vector. I use them instead of a set because
         // I need to be able to move a pointer out of it, but all set iterators are const so this can't be done
-        // Using a sorted vector is probably faster than a regular set anyway ... (cache locality etc)
+        // Using a sorted vector is probably faster than a regular set anyway ... (cache locality etc, no malloc calls etc)
         // Actually it was benchmarked, and flat_set should beat std::set for up to 150 elements or so. Ours will likely be smaller. 
         struct TimeCompare;
         using FireEventTime = std::pair<std::chrono::milliseconds, std::unique_ptr<EventBase>>;
-        //using PendingEventSet = boost::container::flat_set<FireEventTime, TimeCompare>;
-        using PendingEventSet = std::set<FireEventTime, TimeCompare>;
+        using PendingEventSet = boost::container::flat_set<FireEventTime, TimeCompare>;
+        //using PendingEventSet = std::set<FireEventTime, TimeCompare>;
 
     public:
 
@@ -98,7 +98,7 @@ namespace jimbo
         // Event handling. Support raising events here with the scene time (not overall time)
         void raiseEvent(EventBase* ev);
         void raiseEvent(std::unique_ptr<EventBase> ev);
-        void raiseEventDelayed(EventBase* ev, std::chrono::milliseconds delay) 
+        void raiseEvent(EventBase* ev, std::chrono::milliseconds delay) 
         { 
             // We hint that it will be at the end, which is more likely than it being earlier than previous events
             pendingEvents_.emplace_hint(pendingEvents_.cend(), std::make_pair(sceneRunTime_ + delay, std::unique_ptr<EventBase>(ev)));
@@ -112,22 +112,22 @@ namespace jimbo
         // Ordering by the time to fire means we don't need to look over the full list each frame
         struct TimeCompare
         {
-            bool operator()(const FireEventTime &a, const FireEventTime &b)
+            bool operator()(const FireEventTime &a, const FireEventTime &b) const
             {
                 return a.first < b.first;
             }
         };
 
         PendingEventSet pendingEvents_;
-        /*
+        
         void checkPendingEvents()
         {
             for (auto i = pendingEvents_.begin(); i != pendingEvents_.end(); )
             {
                 if (sceneRunTime_ > i->first)
                 {
-                    //raiseEvent(std::move(i->second));
-                    //i = pendingEvents_.erase(i);
+                    raiseEvent(std::move(i->second));
+                    i = pendingEvents_.erase(i);
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace jimbo
                     break;
                 }
             }
-        }*/
+        }
 
         // I never liked friend classes so this deserves a bit of extra thought. 
         // However on each frame there is data I'd like to be made available from the scene manager,

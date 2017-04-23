@@ -26,16 +26,15 @@ using namespace jimbo;
 #ifdef _WIN32
 
 // jimbo includes boost::asio which includes windows.h
-// #include <Windows.h>
+#include <Windows.h>
 // _In_ parameters match the signature, which prevents code analysis giving me warnings for not matching
 int __stdcall WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ char*, _In_ int nShowCmd)
 #else 
 int main()
 #endif
-{
-    
+{    
     // Execute all tests on startup
-    jimbo::test::TestEngine te;
+    test::TestEngine te;
     te.executeAllTests();
     te.logTestResults();
 
