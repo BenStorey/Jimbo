@@ -12,7 +12,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-#include "resource/resourceloader.hpp"
+#include "resource/resourcedatasource.hpp"
 #include "resource/resourceid.hpp"
 
 // For sleeping
@@ -24,7 +24,7 @@ namespace jimbo
 {
     namespace test
     {
-
+        /*
         class ResourceLoaderDelay : public jimbo::ResourceLoader
         {
         public:
@@ -43,7 +43,7 @@ namespace jimbo
             std::unique_ptr<ResourceLoader> wrappedLoader_;
             std::chrono::milliseconds millisToSleep_;
         };
-
+        */
     }
 }
 

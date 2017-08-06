@@ -7,9 +7,10 @@
 //
 // Ben Storey
 //
-// A resource is something that is managed by our resource manager and loaded/unloaded behind the scenes
-//
-// Expect this to be completely replaced as the logic for loading/releasing assets is implemented...
+// A resource is an object that can be loaded and read from an istream
+// The representation for how these are stored should be determined
+// by any subclasses. For resources that get streamed in/out, these may
+// also require explicit synchronisation in the implementing class
 //
 /////////////////////////////////////////////////////////
 
@@ -23,29 +24,29 @@ namespace jimbo
     {
     public:
 
-        using Buffer = std::vector<char>;
-
-        Resource(ResourceID id) : id_(id) {}
-        Resource(ResourceID id, Buffer&& data) : id_(id), buffer_(std::move(data)) {}
+        Resource(ResourceID id) : id_(id) { }
         virtual ~Resource() {}
 
-        // Swap trick to force the buffer to be released
-        void release()
-        {
-            buffer_ = Buffer(0);
-        }
+        virtual void release() = 0;
+        virtual int sizeInBytes() const = 0;
 
-        int sizeInBytes() const
-        {
-            return buffer_.size() * sizeof(unsigned char);
-        }
+        // read will normally read all the data entirely. Textures etc don't make sense to load partially
+        virtual void read(std::unique_ptr<std::istream> s) = 0;
 
-        bool isAvailable() const
-        {
-            return buffer_.size() > 0;
-        }
+        // Music etc may want to stream piece by piece. For that it should keep a reference to the istream
+        // and then implement loads here as appropriate. As the name implies, it will process this call in another thread
+        virtual void updateInBackgroundThread() {}
+        
+        // Streamable resources will typically set this to no until they've been loaded in full
+        // Non-streamable resources should load everything at once, so after being read set this to yes
+        virtual bool isFullyLoaded() = 0;
 
         ResourceID resourceID() const { return id_; }
+
+        // To be called by the ResourceManager, implementing classes shouldn't be concerned with these...
+        //void setInputStream(std::unique_ptr<std::istream> s) { stream_ = std::move(s); }
+        //void releaseInputStream() { stream_ = nullptr; }
+        //bool hasInputStream() const { return stream_ != nullptr; }
 
     protected:
 
@@ -55,8 +56,9 @@ namespace jimbo
         // has loaded without having to track individual threads
         ResourceID id_;
 
-        // A buffer of loaded data, if available
-        Buffer buffer_;
+        // The istream is also provided for the lifetime of the resource (at least, as long as it isn't released)
+        // The resource itself needs to take ownership since it should remember the place when readBytes() is called
+        //std::unique_ptr<std::istream> stream_;
     };
 
 }

@@ -40,7 +40,7 @@ int main()
 
     app->setStartupScene(new test::TestScene);
     
-    // app->registerResource(RID("testMusic"), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
+    //app->registerResource(RID("testMusic"), app->musicResource(), new ResourceFileLoader("../Assets/SomeMusic.ogg"));
 
     app->run();
 

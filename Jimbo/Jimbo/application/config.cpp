@@ -11,7 +11,7 @@
 #include <cpptoml/cpptoml.h>
 #include <boost/algorithm/string.hpp>
 #include "application/config.hpp"
-
+#include "audio/resource/soundresourcefactory.hxx"
 
 void jimbo::Config::reload()
 {
@@ -73,5 +73,9 @@ void jimbo::Config::reload()
         setResourceThreadPoolSize(display->get_as<int>("threadpoolsize").value_or(resourceThreadPoolSize_));
     }
 
-    // Decide later how to handle our resource loads here //
+    // Declare factories based on which audio we are using. Resources may differ
+    if (audioEngine_ == AudioEngine::IRRKLANG) soundResource_ = new SoundResourceFactory();
+
+    // If we are using IRRKLANG, then all Resource DataSources should be PassThrough, which just passes the path
+    // to IrrKlang so it can initialise and use it as appropriate. 
 }

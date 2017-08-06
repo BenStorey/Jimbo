@@ -17,6 +17,7 @@
 #include <boost/noncopyable.hpp>
 #include "audio/jukebox.hpp"
 #include "resource/resourceid.hpp"
+#include "resource/strategy/simple.hxx"
 
 namespace jimbo
 {
@@ -38,7 +39,8 @@ namespace jimbo
 
         // A list of resource IDs that we are waiting to load. Once they become available
         // we can properly swap in/out the sound resource
-        std::vector<ResourceID> pendingResourceLoads_;
+        //std::vector<ResourceID> pendingResourceLoads_;
+        //SimpleResourceLoader<SoundResource> resourceLoader_;
 
         // We own the jukebox too, for playing music tracks
         std::unique_ptr<Jukebox> jukebox_;

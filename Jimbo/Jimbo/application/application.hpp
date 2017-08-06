@@ -38,7 +38,8 @@ namespace jimbo
 
     // resources
     class ResourceID;
-    class ResourceLoader;
+    class ResourceDataSource;
+    class ResourceFactory;
 
     class Application : boost::noncopyable
     {
@@ -66,7 +67,9 @@ namespace jimbo
             startupScene_.reset(startupScene);
         }
 
-        void registerResource(ResourceID id, ResourceLoader* loader); 
+        void registerResource(ResourceID id, int ResourceFactoryID, ResourceDataSource* loader);
+        
+        int soundResource() { return SOUND_RESOURCE; }
 
     private:
 
@@ -81,6 +84,8 @@ namespace jimbo
         std::unique_ptr<ServiceLocator> serviceLocator_;
 
         bool initialised_;
+
+        int SOUND_RESOURCE;
     };
 }
 

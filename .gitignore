@@ -20,7 +20,10 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+
+# But allow anything defined with "log" in our application directory! 
 [Ll]og/
+!/Jimbo/Jimbo/*
 
 # Visual Studio 2015 cache/options directory
 .vs/

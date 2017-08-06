@@ -19,6 +19,8 @@
 namespace jimbo
 {
 
+    class ResourceFactory;
+
     class Config : boost::noncopyable
     {
     public:
@@ -72,7 +74,10 @@ namespace jimbo
         void setResourceThreadPoolSize(int numThreads) { resourceThreadPoolSize_ = numThreads; }
         int getResourceThreadPoolSize() const { return resourceThreadPoolSize_; }
 
-        // Resources too!!
+        // Resources too!! The config will determine how resources are created
+        ResourceFactory* soundResource() const { return soundResource_; }
+        ResourceFactory* musicResource() const { return musicResource_; }
+        ResourceFactory* textureResource() const { return textureResource_; }
 
 
     private:
@@ -87,6 +92,11 @@ namespace jimbo
         AudioEngine audioEngine_ = AudioEngine::IRRKLANG;
         boost::optional<int> fps_;
         int resourceThreadPoolSize_ = 4;
+
+        // Resource factories - ownership of these gets given to the ResourceManager, so we just store raw pointers instead. 
+        ResourceFactory* soundResource_;
+        ResourceFactory* musicResource_;
+        ResourceFactory* textureResource_;
     };
 }
 

@@ -87,9 +87,6 @@
     <ClInclude Include="application\servicelocator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource\resourceloader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource\thread\threadsafequeue.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,9 +123,6 @@
     <ClInclude Include="resource\event\resourcereleasedevent.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource\loader\fileloader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="application\config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -157,6 +151,39 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="log\logmessage.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log\util\executiontime.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourcedatasource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\strategy\lrucache.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\strategy\simple.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourceloadstrategy.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\strategy\scorebased.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\resourcefactory.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\resource\soundresourcefactory.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\resource\soundresource.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\datasource\datafromfile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource\datasource\passthrough.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -200,10 +227,13 @@
     <ClCompile Include="resource\resourcemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resource\loader\fileloader.cpp">
+    <ClCompile Include="application\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="application\config.cpp">
+    <ClCompile Include="resource\datasource\datafromfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource\datasource\passthrough.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

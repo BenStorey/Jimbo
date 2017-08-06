@@ -23,8 +23,20 @@ jimbo::ResourceManager::ResourceManager(ServiceLocator const * serviceLocator) :
 }
 
 // Delegates the load to the threadpool
+// If we have already been loaded, there is nothing to do
 void jimbo::ResourceManager::loadResource(ResourceID id)
 {
+    // If we're already loaded, there is nothing to do!
+    auto r = resourceMap_.find(id);
+    if (r != resourceMap_.end())
+    {
+        if (!r->second->isFullyLoaded())
+        {
+            LOG("Request was made to load resource [" + id.str() + "] but it's already loaded");
+            return;
+        }
+    }
+
     // If we can't find a loader for it then log and do nothing
     // In production builds this should get optimised away
     if (loaderMap_.find(id) == loaderMap_.end())
@@ -33,7 +45,7 @@ void jimbo::ResourceManager::loadResource(ResourceID id)
         return;
     }
 
-    threadPool_.loadResource(loaderMap_[id].get(), id);
+    threadPool_.loadResource(factories_[loaderMap_[id].first].get(), loaderMap_[id].second.get(), id);
 }
 
 void jimbo::ResourceManager::initialise()
@@ -56,7 +68,7 @@ void jimbo::ResourceManager::update()
     {
         ResourceID id = result->resourceID();
         int size = result->sizeInBytes();
-        loadedResources_[result->resourceID()] = std::move(result);
+        resourceMap_[result->resourceID()] = std::move(result);
 
         serviceLocator_->eventManager()->raiseEvent(new ResourceLoadedEvent(id, size));
     }

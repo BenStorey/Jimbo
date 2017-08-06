@@ -19,19 +19,21 @@
 #include "resource/thread/threadpool.hxx"
 #include "resource/thread/threadsafequeue.hxx"
 #include "resource/resource.hpp"
-#include "resource/resourceloader.hpp"
+#include "resource/resourcedatasource.hpp"
 
 namespace jimbo
 {
     class ResourceID;
-    class ResourceLoader;
+    class ResourceDataSource;
+    class ResourceFactory;
 
     class ResourceThreadPool : public ThreadPool
     {
     public:
 
-        void loadResource(ResourceLoader* loader, ResourceID id);
+        void loadResource(ResourceFactory*, ResourceDataSource*, ResourceID);
         std::unique_ptr<Resource> getLoadedResource();
+        void updateResource(Resource*);
 
     private:
 

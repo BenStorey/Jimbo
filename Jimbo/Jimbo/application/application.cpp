@@ -28,6 +28,7 @@
 #include "audio/silent/silentsoundmanager.hxx"
 #include "input/glfw/glfwinputmanager.hxx"
 #include "resource/resourcemanager.hpp"
+#include "audio/resource/soundresourcefactory.hxx"
 
 
 jimbo::Application::Application() 
@@ -46,6 +47,11 @@ jimbo::Application::Application(Config* config)
     serviceLocator_->setService(config);
     serviceLocator_->setService(new ResourceManager(serviceLocator_.get()));
 
+    // Register our resource factories straight away, so they can be safely referenced
+    SOUND_RESOURCE = serviceLocator_->resourceManager()->registerResourceFactory(config->soundResource());
+    //MUSIC_RESOURCE = serviceLocator_->resourceManager()->registerResourceFactory(new MusicResourceFactory());
+    //TEXTURE_RESOURCE = serviceLocator_->resourceManager()->registerResourceFactory(new TextureResourceFactory());
+
     // Configure the logging, on what is as of right now a global variable
     log::attachLogger(new log::ConsoleLogger());
 }
@@ -56,9 +62,9 @@ jimbo::Application::~Application()
 }
 
 
-void jimbo::Application::registerResource(ResourceID id, ResourceLoader * loader)
+void jimbo::Application::registerResource(ResourceID id, int factory, ResourceDataSource * loader)
 {
-    serviceLocator_->resourceManager()->registerResource(id, loader);
+    serviceLocator_->resourceManager()->registerResource(id, factory, loader);
 }
 
 void jimbo::Application::initialise()

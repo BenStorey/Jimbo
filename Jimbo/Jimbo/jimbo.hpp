@@ -43,7 +43,8 @@
 #include "resource/resourceid.hpp"
 #include "resource/resource.hpp"
 #include "resource/resourcemanager.hpp"
-#include "resource/loader/fileloader.hpp"
+#include "resource/datasource/datafromfile.hpp"
+#include "resource/datasource/passthrough.hpp"
 #include "resource/proxy.hpp"
 
 #endif // JIMBO_ENGINE_HPP

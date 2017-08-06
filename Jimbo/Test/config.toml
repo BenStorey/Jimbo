@@ -4,8 +4,6 @@
 # Where we take strings as parameters to describe different functions,
 # these are all case insensitive (Irrklang == irrklang == iRrKlAnG)
 #
-# This file should be saved in UTF-8 *WITHOUT* the BOM
-#
 # 日本語テスト
 #
 #############################################################################
@@ -16,7 +14,7 @@ title = "Jimbo Engine"
 fullscreen = false
 windowsize = [ 800, 600]
 capframerate = 60 
-
+  
 # Where and at what levels we should log messages to
 [logging]
 console = true

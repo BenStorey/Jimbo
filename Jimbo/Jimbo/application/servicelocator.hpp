@@ -48,9 +48,9 @@ namespace jimbo
         std::shared_ptr<InputManager>    inputManager()       const { return im_; }
         std::shared_ptr<EventManager>    eventManager()       const { return em_; }
         std::shared_ptr<SceneManager>    sceneManager()       const { return scm_; }
-        std::shared_ptr<ResourceManager> resourceManager() const { return rm_; }
+        std::shared_ptr<ResourceManager> resourceManager()    const { return rm_; }
         std::shared_ptr<Renderer>        renderer()           const { return r_; }
-        std::shared_ptr<Config>          config()          const { return c_; }
+        std::shared_ptr<Config>          config()             const { return c_; }
 
     private:
         std::shared_ptr<SoundManager>    sm_;
